@@ -1,109 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>крысавдоме</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures mobile responsiveness -->
+    <title>крысавдоме</title>
     <style>
         body {
-            background-color: #000; /* Чёрный фон */
-            color: #fff; /* Белый текст для контраста */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text for contrast */
+        }
 
-        }
         h1 {
-            text-align: left; /* Текст остаётся слева */
-            margin-left: 5vw; /* Отступ слева для эстетики */
+            text-align: left; /* Text remains left-aligned */
+            margin-left: 5vw; /* Margin for aesthetics */
         }
+
         img {
             display: block;
+            max-width: 100%;
+            height: auto; /* Ensures responsiveness */
+        }
+
+        .image-container {
+            position: relative;
+            left: 0;
+            top: 5vw;
+            max-width: 100%;
+            z-index: 4;
+        }
+
+        table.infobox {
+            width: 20vw; /* Fixed to the desired value */
+            text-align: left;
+            font-size: 0.9vw; /* Corrected unit from svw */
+            line-height: 1.5em;
+            border: 2px solid white;
+            position: relative;
+            top: -15vw;
+            right: 2vw;
+        }
+
+        .infobox th {
+            background-color: #ff85da;
+            font-size: 1.3vw;
+            border: 1px solid white;
+        }
+
+        .infobox td {
+            text-align: center;
+            font-size: 1.1vw;
+            border: 1px solid white;
+        }
+
+        p {
+            font-size: 2vw;
+            position: relative;
+            top: 5vw;
+        }
+
+        @font-face {
+            font-family: SK Frankinity;
+            src: url('./SK\ Frankinity.ttf');
         }
     </style>
 </head>
 
 <body>
 
-<img src="./krisavdome.png" alt="krisavdome"
-style=
-    "height: 10vmax;
-    margin: 0 auto;">
-<div class="image-container" style="
+    <img src="./krisavdome.png" alt="krisavdome" style="height: 10vmax; margin: 0 auto;">
+
+    <div class="image-container">
+        <img src="./krisazaza.png" alt="krisazaza" style="
+            position: relative;
+            left:5%;
+            width: 10vw;">
+
+        <img src="./smoke.png" alt="smoke" style="
+            position: absolute;
+            left: 15%;
+            top: -15%;
+            width: 15vw;
+            z-index: 5;">
+    </div>
+
+    <table class="infobox" align="right">
+        <tbody>
+            <tr>
+                <th colspan="2">Крысы</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <img src="./krisavochkah.JPG" alt="Серая крыса" style="width:20vw; margin: 0 auto; height:10vw;">
+                    <br>
+                    <span>Серая крыса (<i>Rattus norvegicus</i>)</span>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Научная классификация</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div><b>Домен:</b> Эукариоты</div>
+                    <div><b>Царство:</b> Животные</div>
+                    <div><b>Тип:</b> Хордовые</div>
+                    <div><b>Класс:</b> Млекопитающие</div>
+                    <div><b>Отряд:</b> Грызуны</div>
+                    <div><b>Семейство:</b> Мышиные</div>
+                    <div><b>Род:</b> Крысы</div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">Международное научное название</th>
+            </tr>
+            <tr>
+                <td colspan="2"><i>Rattus</i> Fischer-Waldheim, 1803</td>
+            </tr>
+            <tr>
+                <th colspan="2">Виды</th>
+            </tr>
+            <tr>
+                <td colspan="2">См. текст</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <img src="./krisassirom.png" alt="krisassirom"
+    style="
     position: relative;
-    left: 10%;
-    top: 5vw;
-    max-width: 50%;
-    z-index: 4;">
-    <img src="./krisazaza.png"
-         alt="krisazaza"
-         style="position: relative;
-         width: 10vw;">
+    top: 10vw;
+    left: 5vw;
+    width: 45vw;
+    transform: scaleX(-1);">
 
-    <img src="./smoke.png"
-         alt="smoke"
-         style="
-             position: absolute;
-             left: 20%;
-             top: -20%;
-             width: 15vw;
-             z-index: 5;
-         ">
-</div>
-<table
-       align="right"
-       class="infobox"
-       style=
-       "width: 20vw;
-       text-align: left;
-       font-size: 0.9svw;
-       line-height: 1.5em;
-       width: 10vw;
-       border: 2px solid white;
-       position: relative;
-       top: -15vw;
-       right: 2vw">
-    <tbody>
-    <tr>
-        <th colspan="2" style="background:#ff85da; font-size:130%; border: 1px solid white;">Крысы</th>
-    </tr>
-    <tr>
-        <td colspan="2" style="text-align:center; border: 1px solid white;">
-            <img alt="Серая крыса (Rattus norvegicus)" src="./krisavochkah.JPG"
-                 style="width:20vw;
-                 height: 10vw">
-            <br>
-            <span>Серая крыса (<i>Rattus norvegicus</i>)</span>
-        </td>
-    </tr>
-    <tr>
-        <th colspan="2" style="background:#ff85da; font-size:110%; border: 1px solid white;">Научная классификация</th>
-    </tr>
-    <tr>
-        <td colspan="2" style="text-align:center; font-size:110%; border: 1px solid white;">
-            <div>
-                <div><b>Домен:</b> Эукариоты</div>
-                <div><b>Царство:</b> Животные</div>
-                <div><b>Тип:</b> Хордовые</div>
-                <div><b>Класс:</b> Млекопитающие</div>
-                <div><b>Отряд:</b> Грызуны</div>
-                <div><b>Семейство:</b> Мышиные</div>
-                <div><b>Род:</b> Крысы</div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <th colspan="2" style="background:#ff85da; font-size:110%; border: 1px solid white;">Международное научное название</th>
-    </tr>
-    <tr>
-        <td colspan="2" style="text-align:center; font-size:110%; border: 1px solid white;"><i>Rattus</i> Fischer-Waldheim, 1803</td>
-    </tr>
-    <tr>
-        <th colspan="2" style="background:#ff85da; font-size:110%; border: 1px solid white;">Виды</th>
-    </tr>
-    <tr>
-        <td colspan="2" style="text-align:center; font-size:110%; border: 1px solid white;">
-            <div align="left">См. текст</div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <pre style="
+        font-size: 1vw;
+        position: relative;
+        top: 20vw;
+        left: 5vw;
+        margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        ">
+            .-----------.
+         ,-'      |      '-.
+      ,-'         |         '-.
+     /            |            \
+   ,'             |             `.
+  ;               |               :
+  ;               |               :
+ ;                |                :
+ |                |                |
+ |                |                |
+ :                |                ;
+  :               |               ;
+  :             +-<-+             ;
+   \         +--+ | +--+         /
+    `.    +--+    |    +--+    ,'
+      \---+       |       +---/
+       '-.        |        ,-'
+          '-.     v     ,-'
+             `---------'
+     </pre>
 
+    <p style="
+    font-size: 3vw;
+    position: relative;
+    top:20vw;
+    left: 5vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;">
+
+        Bbl Bce kolxo3hiki <br>
+        у меня джинсы у которых <br>
+        выход равен длине.
+    </p>
+    
 </body>
 </html>
