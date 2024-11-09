@@ -76,12 +76,42 @@
     </div>
 
     <div class="image-container">
-        <div style="position: relative; width: 10vw; left: 5%; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position: relative; width: 10vw; left: 5%; transition: transform 0.3s ease; cursor: pointer;" 
+             onmouseover="this.style.transform='scale(1.1)'; this.querySelector('.hover-text').style.opacity='1';" 
+             onmouseout="this.style.transform='scale(1)'; this.querySelector('.hover-text').style.opacity='0';">
             <img src="./krisazaza.png" alt="krisazaza" style="width: 100%;">
             <img src="./smoke.png" alt="smoke" style="position: absolute; left: 100%; top: -5%; width: 150%; z-index: 5;">
+            <div class="hover-text" style="
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-size: 2vw;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                z-index: 6;
+            ">???</div>
         </div>
 
-        <img src="truck.png" alt="truck" style="position: absolute; left: 40%; top: -10%; width: 20vw;">
+        <img src="truck.png" alt="truck" 
+            style="position: absolute; left: 40%; top: -10%; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" 
+            onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
+            onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';">
+        <div class="hover-text" style="
+            position: absolute;
+            left: 40%;
+            top: 75%; /* Позиционируем текст под грузовиком */
+            width: 20vw; /* Та же ширина, что и у грузовика */
+            text-align: center;
+            color: white;
+            font-size: 2vw;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 6;
+        ">???</div>
     </div>
 
     <table class="infobox" align="right">
@@ -91,9 +121,9 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <img src="./krisavochkah.JPG" alt="Серая крыса" style="width: 15vw; margin: 0 auto; height: 10vw;">
+                    <img src="./krisavochkah.JPG" alt="крысавдоме" style="width: 15vw; margin: 0 auto; height: 10vw;">
                     <br>
-                    <span>Серая крыса (<i>Rattus norvegicus</i>)</span>
+                    <span>крысавдоме<br>(<i>новая искренность</i>)</span>
                 </td>
             </tr>
             <tr>
@@ -113,7 +143,25 @@
         </tbody>
     </table>
 
-    <img src="./krisassirom.png" alt="krisassirom" style="position: relative; top: 6vw; left: 5vw; width: 45vw; transform: scaleX(-1);">
+    <div style="position: relative;">
+        <img src="./krisassirom.png" alt="krisassirom" 
+            style="position: relative; top: 6vw; left: 5vw; width: 45vw; transform: scaleX(-1); transition: transform 0.3s ease; cursor: pointer;" 
+            onmouseover="this.style.transform='scaleX(-1) scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
+            onmouseout="this.style.transform='scaleX(-1)'; this.nextElementSibling.style.opacity='0';">
+        <div class="hover-text" style="
+            position: absolute;
+            left: 4vw; /* центрируем относительно изображения (5vw + 45vw/2) */
+            top: 18vw; /* располагаем под изображением */
+            width: 45vw;
+            text-align: center;
+            color: white;
+            font-size: 2vw;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 6;
+        ">???</div>
+    </div>
 
     <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 20vw; width: 100%;">
         <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
@@ -163,8 +211,8 @@
         </pre>
     </div>
 
-    <img src="./cult estetiki.png" style="position: relative; top: 28vw; left: 35vw; width: 30vw;">
-    <img src="./commercia.png" style="position: relative; top: 10vw; left: 10vw; width: 20vw;">
-    <img src="./mass cultura.png" style="position: relative; top: -10vw; left: 67vw; width: 30vw;">
+    <img src="./cult estetiki.png" style="position: relative; top: 28vw; left: 35vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="./commercia.png" style="position: relative; top: 10vw; left: 10vw; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="./mass cultura.png" style="position: relative; top: -10vw; left: 67vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
 </body>
 </html>
