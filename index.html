@@ -111,7 +111,7 @@
             transition: opacity 0.3s ease;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             z-index: 6;
-        ">???</div>
+        ">нахуй насилие и войны</div>
     </div>
 
     <table class="infobox" align="right">
@@ -127,17 +127,18 @@
                 </td>
             </tr>
             <tr>
-                <th colspan="2">Научная классификация</th>
+                <th colspan="2">что к чему</th>
             </tr>
             <tr>
                 <td colspan="2">
-                    <div><b>Домен:</b> Эукариоты</div>
-                    <div><b>Царство:</b> Животные</div>
-                    <div><b>Тип:</b> Хордовые</div>
-                    <div><b>Класс:</b> Млекопитающие</div>
-                    <div><b>Отряд:</b> Грызуны</div>
-                    <div><b>Семейство:</b> Мышиные</div>
-                    <div><b>Род:</b> Крысы</div>
+                    <div><b>почему сайт такой7</b><br>
+                        потому что я так захотел</div>
+                    <div><b>в чем смысл7</b><br>
+                        в основном рефлексия,<br>
+                        я не хочу объяснять</div>
+                    <div><b>что далше7</b><br>
+                        все в активной разработке,<br>
+                        я не хочу давать детали</div>
                 </td>
             </tr>
         </tbody>
@@ -211,8 +212,43 @@
         </pre>
     </div>
 
-    <img src="./cult estetiki.png" style="position: relative; top: 28vw; left: 35vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="./commercia.png" style="position: relative; top: 10vw; left: 10vw; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="./mass cultura.png" style="position: relative; top: -10vw; left: 67vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+    <img src="./cult estetiki.png" 
+        style="position: relative; top: 28vw; left: 35vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" 
+        onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='культ эстетики это иллюзорное представление личности о значимости внешнего. такие люди<br>не осознают как оставляют важные вопросы о мире и о себе в тени ставя в приоритет эстетику<br>и наделяя ее смыслом довольствуется глубиной собственного самообмана.'; document.getElementById('hoverText').style.opacity='1';" 
+        onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
+
+    <div style="position: relative; width: fit-content;">
+        <img src="./commercia.png" 
+            style="position: relative; top: 10vw; left: 10vw; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" 
+            onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность, я такую хуйню не приемлю, а так как весь мой набор навыков и интересов связан<br>с креативом, я не знаю кем мне работать.'; document.getElementById('hoverText').style.opacity='1';" 
+            onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
+        <div id="hoverText" class="hover-text" style="
+            position: absolute;
+            left: 0;
+            top: 180%;
+            max-width: 80vw;
+            text-align: center;
+            color: white;
+            font-size: 2vw;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 6;
+            transform: translateX(10vw);
+            white-space: pre;
+            word-wrap: break-word;
+        "></div>
+    </div>
+
+    <img src="./mass cultura.png" 
+        style="position: relative; top: -10vw; left: 67vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" 
+        onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='массовая культура превращает искусство в продукт где форма важнее содержания. это угнетает<br>индивидуальность и критическое мышление, навязывая однообразные и примитивные образы.<br>подобный бизнес, нацеленный на стадо приводит к деградации культуры.'; document.getElementById('hoverText').style.opacity='1';" 
+        onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
+
+    <footer style="
+        width: 100%;
+        height: 10vw;
+        margin-top: 20vw; /* Отступ от контента */
+    "></footer>
 </body>
 </html>
