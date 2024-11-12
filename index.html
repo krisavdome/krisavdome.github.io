@@ -239,6 +239,29 @@
         onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='массовая культура угнетает индивидуальность, стандартизирует вкусы, упрощая образы и смыслы.<br>единственная цель, которую преследуют массовые произведения - популярность и понятность<br>любому долбоебу, следовательно продвигает деградацию культуры.'; document.getElementById('hoverText').style.opacity='1';" 
         onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
 
+        <div style="position: relative;">
+            <div style="position: relative; top: 3vw;width: 25vw; margin: 0 auto;">
+                <img src="./otkroyglaza.png" alt="otkroy glaza" 
+                    style="position: relative; top: 6vw; width: 100%; transition: transform 0.3s ease; cursor: pointer;" 
+                    onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
+                    onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';">
+                <div class="hover-text" style="
+                    position: absolute;
+                    left: 50%;
+                    top: 20vw;
+                    width: 100%;
+                    transform: translateX(-50%);
+                    text-align: center;
+                    color: white;
+                    font-size: 2vw;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                    z-index: 6;
+                ">все вокруг потребляют дерьмо</div>
+            </div>
+        </div>
+        
     <footer style="
         width: 100%;
         height: 10vw;
