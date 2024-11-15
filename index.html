@@ -83,9 +83,8 @@
         <div style="position: relative; width: 10vw; left: 5%; transition: transform 0.3s ease; cursor: pointer;" 
              onmouseover="this.style.transform='scale(1.1)'; this.querySelector('.hover-text').style.opacity='1';" 
              onmouseout="this.style.transform='scale(1)'; this.querySelector('.hover-text').style.opacity='0';">
-            <img src="./krisazaza.png" alt="krisazaza" style="width: 100%;" 
-                onmouseover="document.getElementById('hoverSound').volume = 0.5; document.getElementById('hoverSound').play()" 
-                onmouseout="document.getElementById('hoverSound').pause(); document.getElementById('hoverSound').currentTime = 0;">
+            <img src="./krisazaza.png" alt="krisazaza" style="width: 100%; cursor: pointer;" 
+                onclick="const sound = document.getElementById('hoverSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();">
             <img src="./smoke.png" alt="smoke" style="position: absolute; left: 100%; top: -5%; width: 150%; z-index: 5;">
             <div class="hover-text" style="
                 position: absolute;
@@ -291,7 +290,7 @@
         margin-top: 20vw; /* Отступ от конента */
     "></footer>
 
-    <audio id="hoverSound" preload="auto" volume="0.5">
+    <audio id="hoverSound" preload="auto">
         <source src="bong.mp3" type="audio/mpeg">
     </audio>
 </body>
