@@ -182,6 +182,26 @@
         "></div>
     </div>
 
+    <div style="position: relative; top: 9vw; left: 7vw; width: fit-content; height: fit-content; display: inline-block;">
+        <img src="./massa.png" alt="massa" 
+            style="position: relative; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" 
+            onmouseover="this.style.transform='scale(1.1)'; this.parentNode.querySelector('.hover-text').style.opacity='1';" 
+            onmouseout="this.style.transform='scale(1)'; this.parentNode.querySelector('.hover-text').style.opacity='0';">
+        <div class="hover-text" style="
+            position: absolute;
+            left: 4vw;
+            top: 18vw;
+            width: 45vw;
+            text-align: center;
+            color: white;
+            font-size: 2vw;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 6;
+        "></div>
+    </div>
+
     <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 20vw; width: 100%;">
         <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
            .-----------.
@@ -238,7 +258,7 @@
     <div style="position: relative; width: fit-content;">
         <img src="./commercia.png" 
             style="position: relative; top: 10vw; left: 10vw; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" 
-            onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую ибо культурную<br>ценность.'; document.getElementById('hoverText').style.opacity='1';" 
+            onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.'; document.getElementById('hoverText').style.opacity='1';" 
             onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
         <div id="hoverText" class="hover-text" style="
             position: absolute;
@@ -286,28 +306,6 @@
             </div>
         </div>
         
-        <div style="position: relative; top: 15vw; left: 7vw; width: fit-content; height: fit-content; display: inline-block;">
-            <a href="https://www.youtube.com/watch?v=EoeBqtHX3Es" target="_blank">
-                <img src="./marakesh.jpg" alt="krisassirom" 
-                    style="position: relative; width: 25vw; transition: transform 0.3s ease; cursor: pointer;" 
-                    onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
-                    onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';">
-            </a>
-            <div class="hover-text" style="
-                position: absolute;
-                left: 4vw;
-                top: 18vw;
-                width: 45vw;
-                text-align: center;
-                color: white;
-                font-size: 2vw;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-                z-index: 6;
-            "></div>
-        </div>
-
     <footer style="
         width: 100%;
         height: 10vw;
