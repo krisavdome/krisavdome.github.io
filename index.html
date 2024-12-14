@@ -287,7 +287,7 @@
             <div style="position: relative; top: 3vw;width: 25vw; margin: 0 auto;">
                 <img src="./otkroyglaza.png" alt="otkroy glaza" 
                     style="position: relative; top: 6vw; width: 100%; transition: transform 0.3s ease; cursor: pointer;" 
-                    onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
+                    onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1'; const sound = document.getElementById('otkroyGlazaSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();"
                     onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';">
                 <div class="hover-text" style="
                     position: absolute;
@@ -302,7 +302,7 @@
                     transition: opacity 0.3s ease;
                     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
                     z-index: 6;
-                ">все вокруг потребляют дерьмо</div>
+                ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо, всё вокруг и есть абсурд</div>
             </div>
         </div>
         
@@ -322,6 +322,10 @@
 
     <audio id="ratSound" preload="auto">
         <source src="rat.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="otkroyGlazaSound" preload="auto">
+        <source src="otkroyglaza.mp3" type="audio/mpeg">
     </audio>
 </body>
 </html>
