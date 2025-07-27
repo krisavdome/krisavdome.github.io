@@ -166,7 +166,7 @@
     </div>
 
     <div id="questionBox4" class="question-box hidden">
-        <div class="question-text" id="questionText4">4</div>
+        <div class="question-text" id="questionText4">хорошо</div>
         <div class="answer-buttons">
             <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
         </div>
@@ -177,6 +177,14 @@
         <div class="answer-buttons">
             <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
             <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
+        </div>
+    </div>
+
+    <div id="questionBox6" class="question-box hidden">
+        <div class="question-text" id="questionText6">почему</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="selectAnswer('cant')">1</button>
+            <button class="answer-btn" onclick="selectAnswer('cant2')">2</button>
         </div>
     </div>
 
@@ -452,7 +460,7 @@
                     showQuestion('questionBox5');
                     break;
                 case 'gotcha':
-                    showQuestion('questionBox4');
+                    showQuestion('questionBox5');
                     break;
                 case 'notgotcha':
                     showFinalMessage('ты соврал в первом вопросе');
@@ -461,7 +469,7 @@
                     showFinalMessage('2');
                     break;
                 case 'ido':
-                    showFinalMessage('3');
+                    showQuestion('questionBox6');
                     break;
                 case 'idont':
                     showFinalMessage('4');
