@@ -10,6 +10,10 @@
             overflow-x: hidden;
             background-color: #000;
             color: #fff;
+            font-family: 'Fritz Quadrata Cyrillic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
         }
 
         h1 {
@@ -17,10 +21,10 @@
             position: relative;
             text-align: center;
             font-size: 5vw;
-            font-family: 'FRANKINITY';
+            font-family: 'Fritz Quadrata Cyrillic';
             font-style: normal;
             font-weight: normal;
-            src: local('FRANKINITY Regular'), url('FRANKINITY.otf') format('otf');
+            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('otf');
         }
 
         img {
@@ -50,6 +54,10 @@
             position: relative;
             top: -15vw;
             right: 2vw;
+            font-family: 'Fritz Quadrata Cyrillic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
         }
 
         .infobox th {
@@ -69,6 +77,58 @@
             position: relative;
             top: 5vw;
         }
+
+        .question-box {
+            position: relative;
+            width: 60vw;
+            margin: 2vw auto;
+            padding: 3vw;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .question-text {
+            font-family: 'Fritz Quadrata Cyrillic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
+            font-size: 2.5vw;
+            margin-bottom: 3vw;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            
+        }
+
+        .answer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 3vw;
+            flex-wrap: wrap;
+        }
+
+        .answer-btn {
+            padding: 1.5vw 3vw;
+            font-family: 'Fritz Quadrata Cyrillic';
+            font-style: normal;
+            font-weight: normal;
+            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
+            font-size: 1.8vw;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .answer-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .question-box.hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -77,6 +137,53 @@
         <div class="header-bg" style="position: absolute; top: 0; width: 100%; height: 120%; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0); z-index: -1; mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);">
         </div>
         <img src="./krisavdome.png" alt="krisavdome" style="height: 6vmax; margin: 0 auto;">
+    </div>
+
+    <!-- Интерактивный блок с вопросами -->
+    <div id="questionBox" class="question-box">
+        <div class="question-text" id="questionText">стой, у меня к тебе серьезный разговор</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="selectAnswer('ready')">я готов</button>
+            <button class="answer-btn" onclick="selectAnswer('notready')">я не готов</button>
+        </div>
+    </div>
+
+    <div id="questionBox2" class="question-box hidden">
+        <div class="question-text" id="questionText2">как так вышло, что ты до сих пор не осознал что происходит?</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="selectAnswer('dontunderstand')">я не понимаю о чем ты</button>
+            <button class="answer-btn" onclick="selectAnswer('understand')">я осознал</button>
+        </div>
+    </div>
+
+    <div id="questionBox3" class="question-box hidden">
+        <div class="question-text" id="questionText3">я о политической ситуации</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
+            <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
+        </div>
+    </div>
+
+    <div id="questionBox4" class="question-box hidden">
+        <div class="question-text" id="questionText4">4</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
+        </div>
+    </div>
+
+    <div id="questionBox5" class="question-box hidden">
+        <div class="question-text" id="questionText5">и все еще молчишь?</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
+            <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
+        </div>
+    </div>
+
+    <div id="finalMessage" class="question-box hidden">
+        <div class="question-text" id="finalText">f</div>
+        <div class="answer-buttons">
+            <button class="answer-btn" onclick="restartQuestions()">r</button>
+        </div>
     </div>
 
     <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
@@ -120,7 +227,7 @@
                 <td colspan="2">
                     <img src="./krisavochkah.JPG" alt="крысавдоме" style="width: 15vw; margin: 0 auto; height: 10vw;">
                     <br>
-                    <span>крысавдоме<br>(<i>новая искренность</i>)</span>
+                    <span>крысавдоме<br>(<i>открой глаза</i>)</span>
                 </td>
             </tr>
             <tr>
@@ -135,7 +242,7 @@
             <tr>
                 <td colspan="2">
                     <div><b>другие я</b><br>
-                        сын саундклауда <a href="https://soundcloud.com/uuhhscare" target="_blank" style="color: #0066cc; text-decoration: underline; cursor: pointer;">uuhhscare</a></div>
+                        других меня больше нет
                 </td>
             </tr>
         </tbody>
@@ -182,27 +289,7 @@
         "></div>
     </div>
 
-    <div style="position: relative; top: 9vw; left: 7vw; width: fit-content; height: fit-content; display: inline-block;">
-        <img src="./massa.png" alt="massa" 
-            style="position: relative; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" 
-            onmouseover="this.style.transform='scale(1.1)'; this.parentNode.querySelector('.hover-text').style.opacity='1';" 
-            onmouseout="this.style.transform='scale(1)'; this.parentNode.querySelector('.hover-text').style.opacity='0';">
-        <div class="hover-text" style="
-            position: absolute;
-            left: 4vw;
-            top: 18vw;
-            width: 45vw;
-            text-align: center;
-            color: white;
-            font-size: 2vw;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            z-index: 6;
-        "></div>
-    </div>
-
-    <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 20vw; width: 100%;">
+    <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 8vw; width: 100%;">
         <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
            .-----------.
         ,-'      |      '-.
@@ -283,16 +370,16 @@
         onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='массовая культура угнетает индивидуальность, стандартизирует вкусы, упрощая образы и смыслы.<br>единственная цель, которую преследуют массовые произведения - популярнсть и понятность<br>любому долбоебу.'; document.getElementById('hoverText').style.opacity='1';" 
         onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
 
-        <div style="position: relative;">
-            <div style="position: relative; top: 3vw;width: 25vw; margin: 0 auto;">
+
+            <div style="position: relative; margin: 6vw auto; width: 25vw;">
                 <img src="./otkroyglaza.png" alt="otkroy glaza" 
-                    style="position: relative; top: 6vw; width: 100%; transition: transform 0.3s ease; cursor: pointer;" 
+                    style="position: relative; width: 100%; transition: transform 0.3s ease; cursor: pointer;" 
                     onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1'; const sound = document.getElementById('otkroyGlazaSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();"
                     onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';">
                 <div class="hover-text" style="
                     position: absolute;
                     left: 50%;
-                    top: 20vw;
+                    top: 16vw;
                     width: 100%;
                     transform: translateX(-50%);
                     text-align: center;
@@ -301,14 +388,32 @@
                     opacity: 0;
                     transition: opacity 0.3s ease;
                     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-                    z-index: 6;
-                ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо, всё вокруг и есть абсурд</div>
+                    z-index: 2;
+                ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо</div>
             </div>
-        </div>
         
+    <div style="position: relative; width: fit-content; display: flex; flex-direction: column; align-items: center; margin-left: 10vw; margin-top: 20vw; gap: 3vw;">
+      <div style="display: flex; flex-direction: row; gap: 3vw; align-items: flex-start;">
+        <img src="./karanoshoujo.png" alt="karanoshoujo"
+            style="height: 20vw; transition: transform 0.3s ease; cursor: pointer; display: block;"
+            onmouseover="this.style.transform='scale(1.1)';"
+            onmouseout="this.style.transform='scale(1)';" />
+        <img src="./ladno.png" alt="ladno"
+            style="height: 20vw; width: auto; transition: transform 0.3s ease; cursor: pointer; display: block; object-fit: contain;"
+            onmouseover="this.style.transform='scale(1.1)';"
+            onmouseout="this.style.transform='scale(1)';" />
+      </div>
+      <div style="display: flex; flex-direction: row; gap: 3vw; align-items: flex-start; margin-top: 0.5vw;">
+        <img src="./CSTC Circuit Diagram.png" alt="cstc loop"
+          style="height: 20vw; width: auto; transition: transform 0.3s ease; cursor: pointer; display: block; object-fit: contain;"
+          onmouseover="this.style.transform='scale(1.1)';"
+          onmouseout="this.style.transform='scale(1)';" />
+      </div>
+    </div>
+
     <footer style="
         width: 100%;
-        height: 10vw;
+        height: 20vw;
         margin-top: 20vw; /* Отступ от конента */
     "></footer>
 
@@ -327,5 +432,62 @@
     <audio id="otkroyGlazaSound" preload="auto">
         <source src="otkroyglaza.mp3" type="audio/mpeg">
     </audio>
+
+    <script>
+        // Логика вопросов и ответов
+        function selectAnswer(answer) {
+            const currentBox = document.querySelector('.question-box:not(.hidden)');
+            currentBox.classList.add('hidden');
+            
+            // Логика переходов между вопросами
+            switch(answer) {
+                case 'ready':
+                    showQuestion('questionBox2');
+                    break;
+                case 'notready':
+                    showQuestion('questionBox5');
+                    break;
+                case 'dontunderstand':
+                    showQuestion('questionBox3');
+                    break;
+                case 'understand':
+                    showQuestion('questionBox5');
+                    break;
+                case 'gotcha':
+                    showQuestion('questionBox4');
+                    break;
+                case 'notgotcha':
+                    showFinalMessage('ты соврал в первом вопросе');
+                    break;
+                case 'ready':
+                    showFinalMessage('2');
+                    break;
+                case 'ido':
+                    showFinalMessage('3');
+                    break;
+                case 'idont':
+                    showFinalMessage('4');
+                    break;
+            }
+        }
+        
+        function showQuestion(boxId) {
+            document.getElementById(boxId).classList.remove('hidden');
+        }
+        
+        function showFinalMessage(message) {
+            document.getElementById('finalText').textContent = message;
+            document.getElementById('finalMessage').classList.remove('hidden');
+        }
+        
+        function restartQuestions() {
+            // Скрываем все блоки вопросов
+            const allBoxes = document.querySelectorAll('.question-box');
+            allBoxes.forEach(box => box.classList.add('hidden'));
+            
+            // Показываем первый вопрос
+            document.getElementById('questionBox').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
