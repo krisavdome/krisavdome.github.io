@@ -157,7 +157,7 @@
     </div>
 
     <div id="questionBox3" class="question-box hidden">
-        <div class="question-text" id="questionText3">я о политической ситуации</div>
+        <div class="question-text" id="questionText3">об ущемлении твоих прав</div>
         <div class="answer-buttons">
             <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
             <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
@@ -180,10 +180,7 @@
     </div>
 
     <div id="finalMessage" class="question-box hidden">
-        <div class="question-text" id="finalText">f</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="restartQuestions()">r</button>
-        </div>
+        <div class="question-text" id="finalText"></div>
     </div>
 
     <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
@@ -445,7 +442,7 @@
                     showQuestion('questionBox2');
                     break;
                 case 'notready':
-                    showQuestion('questionBox5');
+                    showFinalMessage('1');
                     break;
                 case 'dontunderstand':
                     showQuestion('questionBox3');
@@ -480,14 +477,6 @@
             document.getElementById('finalMessage').classList.remove('hidden');
         }
         
-        function restartQuestions() {
-            // Скрываем все блоки вопросов
-            const allBoxes = document.querySelectorAll('.question-box');
-            allBoxes.forEach(box => box.classList.add('hidden'));
-            
-            // Показываем первый вопрос
-            document.getElementById('questionBox').classList.remove('hidden');
-        }
     </script>
 </body>
 </html>
