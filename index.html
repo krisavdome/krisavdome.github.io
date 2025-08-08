@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <title>крысавдоме</title>
     <style>
+        .fritz-font {
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+        }
+
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             background-color: #000;
             color: #fff;
-            font-family: 'Fritz Quadrata Cyrillic';
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
             font-style: normal;
             font-weight: normal;
-            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
         }
 
         h1 {
@@ -21,10 +26,9 @@
             position: relative;
             text-align: center;
             font-size: 5vw;
-            font-family: 'Fritz Quadrata Cyrillic';
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
             font-style: normal;
             font-weight: normal;
-            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('otf');
         }
 
         img {
@@ -54,10 +58,9 @@
             position: relative;
             top: -15vw;
             right: 2vw;
-            font-family: 'Fritz Quadrata Cyrillic';
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
             font-style: normal;
             font-weight: normal;
-            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
         }
 
         .infobox th {
@@ -89,15 +92,13 @@
         }
 
         .question-text {
-            font-family: 'Fritz Quadrata Cyrillic';
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
             font-style: normal;
             font-weight: normal;
-            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
             font-size: 2.5vw;
             margin-bottom: 3vw;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            
         }
 
         .answer-buttons {
@@ -109,10 +110,9 @@
 
         .answer-btn {
             padding: 1.5vw 3vw;
-            font-family: 'Fritz Quadrata Cyrillic';
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
             font-style: normal;
             font-weight: normal;
-            src: local('Fritz Quadrata Cyrillic Regular'), url('fritzquadratacyrillic.ttf') format('ttf');
             font-size: 1.8vw;
             background: transparent;
             border: none;
@@ -130,170 +130,227 @@
         .question-box.hidden {
             display: none;
         }
+
+        /* Общие классы для hover эффектов */
+        .hover-scale {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.1);
+        }
+
+        .hover-scale-flip {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            transform: scaleX(-1);
+        }
+
+        .hover-scale-flip:hover {
+            transform: scaleX(-1) scale(1.1);
+        }
+
+        /* Класс для позиционирования элементов */
+        .positioned-element {
+            position: relative;
+            width: fit-content;
+            height: fit-content;
+            display: inline-block;
+        }
+
+        /* Класс для hover текста */
+        .hover-text {
+            position: absolute;
+            color: white;
+            font-size: 2vw;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 6;
+        }
+
+        /* Классы для позиционирования элементов */
+        .position-top-28-left-35 {
+            position: relative;
+            top: 28vw;
+            left: 35vw;
+        }
+
+        .position-top-10-left-10 {
+            position: relative;
+            top: 10vw;
+            left: 10vw;
+        }
+
+        .position-top-neg10-left-67 {
+            position: relative;
+            top: -10vw;
+            left: 67vw;
+        }
+
+        .position-center-auto {
+            position: relative;
+            margin: 6vw auto;
+        }
+
+        /* Стили для aside (заменяет table.infobox) */
+        aside.infobox {
+            width: 15vw;
+            text-align: left;
+            font-size: 0.7vw;
+            line-height: 1.5em;
+            border: 2px solid #1a1a1a;
+            position: relative;
+            top: -15vw;
+            right: 2vw;
+            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            float: right;
+            border-collapse: collapse;
+            background-color: transparent;
+        }
+
+        aside.infobox > div:nth-child(odd) {
+            background-color: #ff85da;
+            font-size: 1.3vw;
+            border: 1px solid #1a1a1a;
+            padding: 0.4vw 0.8vw;
+            text-align: center;
+            font-weight: bold;
+            margin: 0.2vw;
+        }
+
+        aside.infobox > div:nth-child(even) {
+            text-align: center;
+            font-size: 1.1vw;
+            border: 1px solid #1a1a1a;
+            padding: 0.5vw 0.8vw;
+            background-color: transparent;
+            margin: 0.2vw;
+        }
     </style>
 </head>
 
 <body>
-    <div class="header" style="position: sticky; top: 0; z-index: 100; height: 8vmax; display: flex; align-items: center; justify-content: center;">
+    <header class="header" style="position: sticky; top: 0; z-index: 100; height: 8vmax; display: flex; align-items: center; justify-content: center;">
         <div class="header-bg" style="position: absolute; top: 0; width: 100%; height: 120%; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0); z-index: -1; mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);">
         </div>
         <img src="./krisavdome.png" alt="krisavdome" style="height: 6vmax; margin: 0 auto;">
-    </div>
+    </header>
 
-    <!-- Интерактивный блок с вопросами -->
-    <div id="questionBox" class="question-box">
-        <div class="question-text" id="questionText">стой, у меня к тебе серьезный разговор</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="selectAnswer('ready')">я готов</button>
-            <button class="answer-btn" onclick="selectAnswer('notready')">я не готов</button>
-        </div>
-    </div>
-
-    <div id="questionBox2" class="question-box hidden">
-        <div class="question-text" id="questionText2">как так вышло, что ты до сих пор не осознал что происходит?</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="selectAnswer('dontunderstand')">я не понимаю о чем ты</button>
-            <button class="answer-btn" onclick="selectAnswer('understand')">я осознал</button>
-        </div>
-    </div>
-
-    <div id="questionBox3" class="question-box hidden">
-        <div class="question-text" id="questionText3">об ущемлении твоих прав</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
-            <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
-        </div>
-    </div>
-
-    <div id="questionBox4" class="question-box hidden">
-        <div class="question-text" id="questionText4">хорошо</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
-        </div>
-    </div>
-
-    <div id="questionBox5" class="question-box hidden">
-        <div class="question-text" id="questionText5">и все еще молчишь?</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
-            <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
-        </div>
-    </div>
-
-    <div id="questionBox6" class="question-box hidden">
-        <div class="question-text" id="questionText6">почему</div>
-        <div class="answer-buttons">
-            <button class="answer-btn" onclick="selectAnswer('cant')">1</button>
-            <button class="answer-btn" onclick="selectAnswer('cant2')">2</button>
-        </div>
-    </div>
-
-    <div id="finalMessage" class="question-box hidden">
-        <div class="question-text" id="finalText"></div>
-    </div>
-
-    <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
-        <div style="width: 30%; display: flex; justify-content: center; position: relative; transition: transform 0.3s ease; cursor: pointer;"
-             onmouseover="this.style.transform='scale(1.1)'; this.querySelector('.hover-text').style.opacity='1';" 
-             onmouseout="this.style.transform='scale(1)'; this.querySelector('.hover-text').style.opacity='0';">
-            <div style="position: relative;">
-                <img src="./krisazaza.png" alt="krisazaza" style="width: 10vw; cursor: pointer;" 
-                    onclick="const sound = document.getElementById('hoverSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();">
-                <img src="./smoke.png" alt="smoke" style="position: absolute; left: 100%; top: -5%; width: 15vw; z-index: 5;">
-                <div class="hover-text" style="position: absolute; top: 50%; left: 100%; transform: translate(-50%, -50%); color: white; font-size: 2vw; opacity: 0; transition: opacity 0.3s ease; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); z-index: 6;"></div>
+    <main>
+        <!-- Интерактивный блок с вопросами -->
+        <section id="questionBox" class="question-box">
+            <div class="question-text" id="questionText">стой, у меня к тебе серьезный разговор</div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="selectAnswer('ready')">я готов</button>
+                <button class="answer-btn" onclick="selectAnswer('notready')">я не готов</button>
             </div>
-        </div>
+        </section>
 
-        <div style="width: 30%; display: flex; justify-content: center; position: relative; transition: transform 0.3s ease; cursor: pointer;"
-             onmouseover="this.style.transform='scale(1.1)'; this.querySelector('.hover-text').style.opacity='1';" 
-             onmouseout="this.style.transform='scale(1)'; this.querySelector('.hover-text').style.opacity='0';">
-            <div style="position: relative;">
-                <img src="truck.png" alt="truck" style="width: 20vw; cursor: pointer; transition: transform 0.3s ease;"
-                    onclick="const sound = document.getElementById('honkSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();">
-                <div class="hover-text" style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); width: 20vw; text-align: center; color: white; font-size: 2vw; opacity: 0; transition: opacity 0.3s ease; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); z-index: 6;">нахуй насилие и войны</div>
+        <section id="questionBox2" class="question-box hidden">
+            <div class="question-text" id="questionText2">как так вышло, что ты до сих пор не осознал что происходит?</div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="selectAnswer('dontunderstand')">я не понимаю о чем ты</button>
+                <button class="answer-btn" onclick="selectAnswer('understand')">я осознал</button>
             </div>
-        </div>
+        </section>
 
-        <div style="width: 30%; display: flex; justify-content: center; position: relative; transition: transform 0.3s ease; cursor: pointer;"
-             onmouseover="this.style.transform='scale(1.1)'; this.querySelector('.hover-text').style.opacity='1';" 
-             onmouseout="this.style.transform='scale(1)'; this.querySelector('.hover-text').style.opacity='0';">
-            <div style="position: relative;">
-                <img src="yazva.png" alt="yazva" style="width: 18vw; cursor: pointer; transition: transform 0.3s ease;">
-                <div class="hover-text" style="position: absolute; top: 75%; left: 50%; transform: translateX(-50%); width: 18vw; text-align: center; color: white; font-size: 2vw; opacity: 0; transition: opacity 0.3s ease; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); z-index: 6;"></div>
+        <section id="questionBox3" class="question-box hidden">
+            <div class="question-text" id="questionText3">об ущемлении твоих прав</div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
+                <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
             </div>
+        </section>
+
+        <section id="questionBox4" class="question-box hidden">
+            <div class="question-text" id="questionText4">хорошо</div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
+            </div>
+        </section>
+
+        <section id="questionBox5" class="question-box hidden">
+            <div class="question-text" id="questionText5">и все еще молчишь?</div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
+                <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
+            </div>
+        </section>
+
+        <section id="questionBox6" class="question-box hidden">
+            <div class="question-text" id="questionText6">почему</div>
+            <div class="answer-buttons">
+                <button class="answer-btn" onclick="selectAnswer('cant')">1</button>
+                <button class="answer-btn" onclick="selectAnswer('cant2')">2</button>
+            </div>
+        </section>
+
+        <section id="finalMessage" class="question-box hidden">
+            <div class="question-text" id="finalText"></div>
+        </section>
+
+        <section class="content-section">
+            <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
+
+
+
+
+                <div class="hover-scale" style="width: 30%; display: flex; justify-content: center; position: relative;"
+                     onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
+                     onmouseout="this.querySelector('.hover-text').style.opacity='0';">
+                    <div style="position: relative;">
+                        <img src="yazva.png" alt="yazva" style="width: 18vw;">
+                        <div class="hover-text" style="top: 75%; left: 50%; transform: translateX(-50%); width: 18vw; text-align: center;"></div>
+                    </div>
+                </div>
+
+                <div class="hover-scale" style="width: 30%; display: flex; justify-content: center; position: relative;"
+                     onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
+                     onmouseout="this.querySelector('.hover-text').style.opacity='0';">
+                    <div style="position: relative;">
+                        <img src="./CSTC Circuit Diagram.png" alt="cstc loop" style="width: 18vw;">
+                        <div class="hover-text" style="top: 75%; left: 50%; transform: translateX(-50%); width: 18vw; text-align: center;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="infobox">
+            <div>Крысы</div>
+            <div>
+                <img src="./krisavochkah.JPG" alt="крысавдоме" style="width: 15vw; margin: 0 auto; height: 10vw;">
+                <br>
+                <span>крысавдоме<br>(<i>открой глаза</i>)</span>
+            </div>
+            <div>что к чему</div>
+            <div>
+                <div><b>почему сайт такой7</b><br>
+                    потому что я так захотел</div>
+            </div>
+
+        </aside>
+
+        <div class="positioned-element" style="top: 12vw; left: 5vw;">
+            <img src="./krisassirom.png" alt="krisassirom" 
+                class="hover-scale-flip"
+                style="position: relative; width: 45vw;" 
+                onmouseover="this.nextElementSibling.style.opacity='1';" 
+                onmouseout="this.nextElementSibling.style.opacity='0';"
+                onclick="playSound('ratSound')">
+            <div class="hover-text" style="
+                left: 4vw;
+                top: 18vw;
+                width: 45vw;
+                text-align: center;
+            "></div>
         </div>
-    </div>
+    </main>
 
-    <table class="infobox" align="right">
-        <tbody>
-            <tr>
-                <th colspan="2">Крысы</th>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <img src="./krisavochkah.JPG" alt="крысавдоме" style="width: 15vw; margin: 0 auto; height: 10vw;">
-                    <br>
-                    <span>крысавдоме<br>(<i>открой глаза</i>)</span>
-                </td>
-            </tr>
-            <tr>
-                <th colspan="2">что к чему</th>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div><b>почему сайт такой7</b><br>
-                        потому что я так захотел</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div><b>другие я</b><br>
-                        других меня больше нет
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
-    <div style="position: relative; top: 6vw; left: 5vw; width: fit-content; height: fit-content; display: inline-block;">
-        <img src="./krisassirom.png" alt="krisassirom" 
-            style="position: relative; width: 45vw; transform: scaleX(-1); transition: transform 0.3s ease; cursor: pointer;" 
-            onmouseover="this.style.transform='scaleX(-1) scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
-            onmouseout="this.style.transform='scaleX(-1)'; this.nextElementSibling.style.opacity='0';"
-            onclick="const sound = document.getElementById('ratSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();">
-        <div class="hover-text" style="
-            position: absolute;
-            left: 4vw;
-            top: 18vw;
-            width: 45vw;
-            text-align: center;
-            color: white;
-            font-size: 2vw;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            z-index: 6;
-        "></div>
-    </div>
-
-    <div style="position: relative; top: 6vw; left: 10vw; width: fit-content; height: fit-content; display: inline-block;">
-        <img src="./ukurka.png" alt="ukurka" 
-            style="position: relative; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" 
-            onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1';" 
-            onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';"
-        <div class="hover-text" style="
-            position: absolute;
-            left: 4vw;
-            top: 18vw;
-            width: 45vw;
-            text-align: center;
-            color: white;
-            font-size: 2vw;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            z-index: 6;
-        "></div>
-    </div>
 
     <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 8vw; width: 100%;">
         <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
@@ -344,15 +401,17 @@
     </div>
 
     <img src="./cult estetiki.png" 
-        style="position: relative; top: 28vw; left: 35vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" 
-        onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='ваши представления о значимости внешнего иллюзорны. вы не осознаете как оставляете важные<br>вопросы о мире и о себе в тени.'; document.getElementById('hoverText').style.opacity='1';" 
-        onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
+        class="hover-scale position-top-28-left-35"
+        style="width: 30vw;" 
+        onmouseover="showHoverText('ваши представления о значимости внешнего иллюзорны. вы не осознаете как оставляете важные<br>вопросы о мире и о себе в тени.')" 
+        onmouseout="hideHoverText()">
 
     <div style="position: relative; width: fit-content;">
         <img src="./commercia.png" 
-            style="position: relative; top: 10vw; left: 10vw; width: 20vw; transition: transform 0.3s ease; cursor: pointer;" 
-            onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.'; document.getElementById('hoverText').style.opacity='1';" 
-            onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
+            class="hover-scale position-top-10-left-10"
+            style="width: 20vw;" 
+            onmouseover="showHoverText('как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.')" 
+            onmouseout="hideHoverText()">
         <div id="hoverText" class="hover-text" style="
             position: absolute;
             left: 0;
@@ -372,16 +431,18 @@
     </div>
 
     <img src="./mass cultura.png" 
-        style="position: relative; top: -10vw; left: 67vw; width: 30vw; transition: transform 0.3s ease; cursor: pointer;" 
-        onmouseover="this.style.transform='scale(1.1)'; document.getElementById('hoverText').innerHTML='массовая культура угнетает индивидуальность, стандартизирует вкусы, упрощая образы и смыслы.<br>единственная цель, которую преследуют массовые произведения - популярнсть и понятность<br>любому долбоебу.'; document.getElementById('hoverText').style.opacity='1';" 
-        onmouseout="this.style.transform='scale(1)'; document.getElementById('hoverText').style.opacity='0'">
+        class="hover-scale position-top-neg10-left-67"
+        style="width: 30vw;" 
+        onmouseover="showHoverText('в большинстве своем, массовая культура — это психотропное вещество, дозирующее смысл<br>до уровня, безопасного для интеллектуального инфантила. всё, что в нейесть — это<br>развлечение, пригодное для потребления тем, кто боится боли мышления.')" 
+        onmouseout="hideHoverText()">
 
 
-            <div style="position: relative; margin: 6vw auto; width: 25vw;">
+            <div class="position-center-auto" style="width: 25vw;">
                 <img src="./otkroyglaza.png" alt="otkroy glaza" 
-                    style="position: relative; width: 100%; transition: transform 0.3s ease; cursor: pointer;" 
-                    onmouseover="this.style.transform='scale(1.1)'; this.nextElementSibling.style.opacity='1'; const sound = document.getElementById('otkroyGlazaSound'); sound.volume = 0.5; sound.currentTime = 0; sound.play();"
-                    onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0';">
+                    class="hover-scale"
+                    style="position: relative; width: 100%;" 
+                    onmouseover="this.nextElementSibling.style.opacity='1'; playSound('otkroyGlazaSound');"
+                    onmouseout="this.nextElementSibling.style.opacity='0';">
                 <div class="hover-text" style="
                     position: absolute;
                     left: 50%;
@@ -398,24 +459,7 @@
                 ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо</div>
             </div>
         
-    <div style="position: relative; width: fit-content; display: flex; flex-direction: column; align-items: center; margin-left: 10vw; margin-top: 20vw; gap: 3vw;">
-      <div style="display: flex; flex-direction: row; gap: 3vw; align-items: flex-start;">
-        <img src="./karanoshoujo.png" alt="karanoshoujo"
-            style="height: 20vw; transition: transform 0.3s ease; cursor: pointer; display: block;"
-            onmouseover="this.style.transform='scale(1.1)';"
-            onmouseout="this.style.transform='scale(1)';" />
-        <img src="./ladno.png" alt="ladno"
-            style="height: 20vw; width: auto; transition: transform 0.3s ease; cursor: pointer; display: block; object-fit: contain;"
-            onmouseover="this.style.transform='scale(1.1)';"
-            onmouseout="this.style.transform='scale(1)';" />
-      </div>
-      <div style="display: flex; flex-direction: row; gap: 3vw; align-items: flex-start; margin-top: 0.5vw;">
-        <img src="./CSTC Circuit Diagram.png" alt="cstc loop"
-          style="height: 20vw; width: auto; transition: transform 0.3s ease; cursor: pointer; display: block; object-fit: contain;"
-          onmouseover="this.style.transform='scale(1.1)';"
-          onmouseout="this.style.transform='scale(1)';" />
-      </div>
-    </div>
+
 
     <footer style="
         width: 100%;
@@ -423,13 +467,7 @@
         margin-top: 20vw; /* Отступ от конента */
     "></footer>
 
-    <audio id="hoverSound" preload="auto">
-        <source src="bong.mp3" type="audio/mpeg">
-    </audio>
 
-    <audio id="honkSound" preload="auto">
-        <source src="honkhonk.mp3" type="audio/mpeg">
-    </audio>
 
     <audio id="ratSound" preload="auto">
         <source src="rat.mp3" type="audio/mpeg">
@@ -456,6 +494,37 @@
         - легко расширять и поддерживать код.
         Если потребуется изменить логику — ищите window._contentHidden, restoreAllContent, hideAllContentExceptFinal, resetTest.
         */
+
+        // Функция для воспроизведения звуков
+        function playSound(soundId, volume = 0.5) {
+            const sound = document.getElementById(soundId);
+            if (sound) {
+                sound.volume = volume;
+                sound.currentTime = 0;
+                sound.play().catch(error => {
+                    console.log('Ошибка воспроизведения звука:', error);
+                });
+            }
+        }
+
+        // Функции для управления hover текстом
+        function showHoverText(text) {
+            const hoverText = document.getElementById('hoverText');
+            if (hoverText) {
+                hoverText.innerHTML = text;
+                hoverText.style.opacity = '1';
+            } else {
+                console.warn('Элемент hoverText не найден');
+            }
+        }
+
+        function hideHoverText() {
+            const hoverText = document.getElementById('hoverText');
+            if (hoverText) {
+                hoverText.style.opacity = '0';
+            }
+        }
+
         // Флаг, скрыт ли контент (true — скрыт, false — показан)
         window._contentHidden = false;
 
