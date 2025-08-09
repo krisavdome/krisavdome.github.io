@@ -241,57 +241,62 @@
     </header>
 
     <main>
-        <!-- Интерактивный блок с вопросами -->
-        <section id="questionBox" class="question-box">
-            <div class="question-text" id="questionText">стой, у меня к тебе серьезный разговор</div>
-            <div class="answer-buttons">
-                <button class="answer-btn" onclick="selectAnswer('ready')">я готов</button>
-                <button class="answer-btn" onclick="selectAnswer('notready')">я не готов</button>
-            </div>
-        </section>
+        <div id="dialogContainer" style="display: flex; align-items: flex-start; gap: 2vw; max-width: 100vw; padding: 2vw;">
+            <img src="peschanka.png" alt="Peschanka" style="width: 20vw; object-fit: contain; margin-left: 5vw; align-self: center;">
+            <div id="questionsWrapper" style="flex: 1;">
+                <!-- Интерактивный блок с вопросами -->
+                <section id="questionBox" class="question-box">
+                    <div class="question-text" id="questionText">стой, у меня к тебе серьезный разговор</div>
+                    <div class="answer-buttons">
+                        <button class="answer-btn" onclick="selectAnswer('ready')">я готов</button>
+                        <button class="answer-btn" onclick="selectAnswer('notready')">я не готов</button>
+                    </div>
+                </section>
 
-        <section id="questionBox2" class="question-box hidden">
-            <div class="question-text" id="questionText2">как так вышло, что ты до сих пор не осознал что происходит?</div>
-            <div class="answer-buttons">
-                <button class="answer-btn" onclick="selectAnswer('dontunderstand')">я не понимаю о чем ты</button>
-                <button class="answer-btn" onclick="selectAnswer('understand')">я осознал</button>
-            </div>
-        </section>
+                <section id="questionBox2" class="question-box hidden">
+                    <div class="question-text" id="questionText2">как так вышло, что ты до сих пор не осознал что происходит?</div>
+                    <div class="answer-buttons">
+                        <button class="answer-btn" onclick="selectAnswer('dontunderstand')">я не понимаю о чем ты</button>
+                        <button class="answer-btn" onclick="selectAnswer('understand')">я осознал</button>
+                    </div>
+                </section>
 
-        <section id="questionBox3" class="question-box hidden">
-            <div class="question-text" id="questionText3">об ущемлении твоих прав</div>
-            <div class="answer-buttons">
-                <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
-                <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
-            </div>
-        </section>
+                <section id="questionBox3" class="question-box hidden">
+                    <div class="question-text" id="questionText3">об ущемлении твоих прав</div>
+                    <div class="answer-buttons">
+                        <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
+                        <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
+                    </div>
+                </section>
 
-        <section id="questionBox4" class="question-box hidden">
-            <div class="question-text" id="questionText4">хорошо</div>
-            <div class="answer-buttons">
-                <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
-            </div>
-        </section>
+                <section id="questionBox4" class="question-box hidden">
+                    <div class="question-text" id="questionText4">хорошо</div>
+                    <div class="answer-buttons">
+                        <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
+                    </div>
+                </section>
 
-        <section id="questionBox5" class="question-box hidden">
-            <div class="question-text" id="questionText5">и все еще молчишь?</div>
-            <div class="answer-buttons">
-                <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
-                <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
-            </div>
-        </section>
+                <section id="questionBox5" class="question-box hidden">
+                    <div class="question-text" id="questionText5">и все еще молчишь?</div>
+                    <div class="answer-buttons">
+                        <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
+                        <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
+                    </div>
+                </section>
 
-        <section id="questionBox6" class="question-box hidden">
-            <div class="question-text" id="questionText6">почему</div>
-            <div class="answer-buttons">
-                <button class="answer-btn" onclick="selectAnswer('cant')">1</button>
-                <button class="answer-btn" onclick="selectAnswer('cant2')">2</button>
-            </div>
-        </section>
+                <section id="questionBox6" class="question-box hidden">
+                    <div class="question-text" id="questionText6">почему</div>
+                    <div class="answer-buttons">
+                        <button class="answer-btn" onclick="selectAnswer('cant')">1</button>
+                        <button class="answer-btn" onclick="selectAnswer('cant2')">2</button>
+                    </div>
+                </section>
 
-        <section id="finalMessage" class="question-box hidden">
-            <div class="question-text" id="finalText"></div>
-        </section>
+                <section id="finalMessage" class="question-box hidden">
+                    <div class="question-text" id="finalText"></div>
+                </section>
+            </div>
+        </div>
 
         <section class="content-section">
             <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
