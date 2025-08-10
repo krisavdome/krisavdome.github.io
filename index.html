@@ -260,7 +260,7 @@
                 <section id="questionBox4" class="question-box hidden">
                     <div class="question-text" id="questionText4">хорошо</div>
                     <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('ready')">5</button>
+                        <button class="answer-btn" onclick="selectAnswer('ready2')">5</button>
                     </div>
                 </section>
 
@@ -288,10 +288,6 @@
 
         <section class="content-section">
             <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
-
-
-
-
                 <div class="hover-scale" style="width: 30%; display: flex; justify-content: center; position: relative;"
                      onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
                      onmouseout="this.querySelector('.hover-text').style.opacity='0';">
@@ -342,8 +338,6 @@
             "></div>
         </div>
     </main>
-
-
 
     <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 8vw; width: 100%;">
         <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
@@ -429,38 +423,33 @@
         onmouseover="showHoverText('в большинстве своем, массовая культура — это психотропное вещество, дозирующее смысл<br>до уровня, безопасного для интеллектуального инфантила. всё, что в нейесть — это<br>развлечение, пригодное для потребления тем, кто боится боли мышления.')" 
         onmouseout="hideHoverText()">
 
-
-            <div class="position-center-auto" style="width: 25vw;">
-                <img src="./otkroyglaza.png" alt="otkroy glaza" 
-                    class="hover-scale"
-                    style="position: relative; width: 100%;" 
-                    onmouseover="this.nextElementSibling.style.opacity='1'; playSound('otkroyGlazaSound');"
-                    onmouseout="this.nextElementSibling.style.opacity='0';">
-                <div class="hover-text" style="
-                    position: absolute;
-                    left: 50%;
-                    top: 16vw;
-                    width: 100%;
-                    transform: translateX(-50%);
-                    text-align: center;
-                    color: white;
-                    font-size: 2vw;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-                    z-index: 2;
-                ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо</div>
-            </div>
-        
-
+    <div class="position-center-auto" style="width: 25vw;">
+        <img src="./otkroyglaza.png" alt="otkroy glaza" 
+            class="hover-scale"
+            style="position: relative; width: 100%;" 
+            onmouseover="this.nextElementSibling.style.opacity='1'; playSound('otkroyGlazaSound');"
+            onmouseout="this.nextElementSibling.style.opacity='0';">
+        <div class="hover-text" style="
+            position: absolute;
+            left: 50%;
+            top: 16vw;
+            width: 100%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            font-size: 2vw;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо</div>
+    </div>
 
     <footer style="
         width: 100%;
         height: 20vw;
-        margin-top: 20vw; /* Отступ от конента */
+        margin-top: 20vw;
     "></footer>
-
-
 
     <audio id="ratSound" preload="auto">
         <source src="rat.mp3" type="audio/mpeg">
@@ -471,24 +460,6 @@
     </audio>
 
     <script>
-        /*
-        --- КРАТКОЕ ПОЯСНЕНИЕ ПО РЕАЛИЗАЦИИ ---
-        Для скрытия всего контента (кроме хедера, футера и финального сообщения) используется рекурсивное скрытие через style.display = 'none'.
-        При скрытии исходное значение display сохраняется в data-атрибут, чтобы при возврате восстановить корректное отображение (flex, inline-block, table и т.д.).
-        Это важно, потому что простое style.display = '' ломает layout для сложных элементов.
-        Для возврата контента restoreAllContent рекурсивно восстанавливает display и удаляет .hidden.
-        window._contentHidden — флаг, чтобы restoreAllContent вызывался только если контент реально скрывался (только для варианта "не готов").
-        После возврата дополнительно рекурсивно восстанавливается видимость всех потомков questionBox*, чтобы кнопки и текст точно были видимы.
-        Такой способ выбран, чтобы:
-        - не ломать layout;
-        - корректно работать с вложенными и сложными элементами;
-        - не трогать хедер, футер и финальное сообщение;
-        - избежать багов с кнопками и вложенными блоками;
-        - легко расширять и поддерживать код.
-        Если потребуется изменить логику — ищите window._contentHidden, restoreAllContent, hideAllContentExceptFinal, resetTest.
-        */
-
-        // Функция для воспроизведения звуков
         function playSound(soundId, volume = 0.5) {
             const sound = document.getElementById(soundId);
             if (sound) {
@@ -500,14 +471,11 @@
             }
         }
 
-        // Функции для управления hover текстом
         function showHoverText(text) {
             const hoverText = document.getElementById('hoverText');
             if (hoverText) {
                 hoverText.innerHTML = text;
                 hoverText.style.opacity = '1';
-            } else {
-                console.warn('Элемент hoverText не найден');
             }
         }
 
@@ -518,186 +486,175 @@
             }
         }
 
-        // Флаг, скрыт ли контент (true — скрыт, false — показан)
         window._contentHidden = false;
 
-        // Скрывает все элементы внутри body, кроме .header, footer и #finalMessage
-        // Сохраняет исходный display в data-атрибут для корректного восстановления
+        // Простая функция - скрывает ВСЕ кроме header, footer и finalMessage
         function hideAllContentExceptFinal() {
-            function hideRecursive(element) {
-                // Не скрываем .header, footer, #finalMessage
-                if (
-                    (element.classList && element.classList.contains('header')) ||
-                    element.tagName && element.tagName.toLowerCase() === 'footer' ||
-                    element.id === 'finalMessage'
-                ) return;
-                // Сохраняем исходный display, если ещё не сохранён
-                if (!element.hasAttribute('data-original-display')) {
-                    element.setAttribute('data-original-display', element.style.display || window.getComputedStyle(element).display);
-                }
-                // Рекурсивно скрываем потомков
-                if (element.children && element.children.length > 0) {
-                    Array.from(element.children).forEach(hideRecursive);
-                }
-                element.style.display = 'none';
+            // Скрываем весь main
+            const main = document.querySelector('main');
+            if (main) {
+                main.style.display = 'none';
             }
-            Array.from(document.body.children).forEach(hideRecursive);
-            // Показываем финальный блок
-            var final = document.getElementById('finalMessage');
-            if(final) {
-                final.style.display = '';
-                final.classList.remove('hidden');
+            
+            // Скрываем все остальные элементы body кроме header и footer
+            Array.from(document.body.children).forEach(child => {
+                if (child.tagName.toLowerCase() !== 'header' && 
+                    child.tagName.toLowerCase() !== 'footer' &&
+                    child.tagName.toLowerCase() !== 'script' &&
+                    child.tagName.toLowerCase() !== 'audio' &&
+                    !child.classList.contains('header') &&
+                    child !== main) {
+                    child.style.display = 'none';
+                }
+            });
+            
+            // Показываем только finalMessage
+            const final = document.getElementById('finalMessage');
+            if (final) {
+                // Создаем новый контейнер для finalMessage если его родители скрыты
+                if (!document.getElementById('tempFinalContainer')) {
+                    const tempContainer = document.createElement('div');
+                    tempContainer.id = 'tempFinalContainer';
+                    tempContainer.style.cssText = 'position: absolute; top: 10vw; left: 5vw; right: 5vw; z-index: 1000; max-height: calc(100vh - 20vw); overflow-y: auto; padding: 2vw;';
+                    
+                    // Клонируем finalMessage
+                    const finalClone = final.cloneNode(true);
+                    finalClone.style.display = 'block';
+                    finalClone.classList.remove('hidden');
+                    finalClone.style.position = 'relative';
+                    finalClone.style.top = 'auto';
+                    finalClone.style.left = 'auto';
+                    finalClone.style.transform = 'none';
+                    
+                    tempContainer.appendChild(finalClone);
+                    document.body.appendChild(tempContainer);
+                }
             }
+            
             window._contentHidden = true;
         }
 
-        // Восстанавливает все элементы внутри body, кроме #finalMessage
-        // Восстанавливает исходный display из data-атрибута, удаляет .hidden
+        // Восстанавливает весь контент
         function restoreAllContent() {
-            function showRecursive(element) {
-                if (
-                    (element.classList && element.classList.contains('header')) ||
-                    element.tagName && element.tagName.toLowerCase() === 'footer' ||
-                    element.id === 'finalMessage'
-                ) return;
-                if (element.children && element.children.length > 0) {
-                    Array.from(element.children).forEach(showRecursive);
-                }
-                // Восстанавливаем исходный display
-                if (element.hasAttribute('data-original-display')) {
-                    element.style.display = element.getAttribute('data-original-display');
-                    element.removeAttribute('data-original-display');
-                } else {
-                    element.style.display = '';
-                }
-                if (element.classList) element.classList.remove('hidden');
+            // Удаляем временный контейнер если он есть
+            const tempContainer = document.getElementById('tempFinalContainer');
+            if (tempContainer) {
+                tempContainer.remove();
             }
-            Array.from(document.body.children).forEach(showRecursive);
+            
+            // Показываем main
+            const main = document.querySelector('main');
+            if (main) {
+                main.style.display = '';
+            }
+            
+            // Показываем все остальные элементы
+            Array.from(document.body.children).forEach(child => {
+                if (child.tagName.toLowerCase() !== 'header' && 
+                    child.tagName.toLowerCase() !== 'footer' &&
+                    child.tagName.toLowerCase() !== 'script' &&
+                    child.tagName.toLowerCase() !== 'audio' &&
+                    !child.classList.contains('header')) {
+                    child.style.display = '';
+                }
+            });
+            
+            // Скрываем оригинальный finalMessage
+            const final = document.getElementById('finalMessage');
+            if (final) {
+                final.classList.add('hidden');
+            }
+            
             window._contentHidden = false;
         }
 
-        // Основная логика обработки ответов на вопросы
-        // В зависимости от выбранного варианта скрывает/показывает нужные блоки
         function selectAnswer(answer) {
             const currentBox = document.querySelector('.question-box:not(.hidden)');
+            
             switch(answer) {
                 case 'ready':
-                    // Переход ко второму вопросу
                     currentBox.classList.add('hidden');
                     showQuestion('questionBox2');
                     break;
-                case 'notready': {
-                    // Скрыть весь контент, показать финальное сообщение
-                    hideAllContentExceptFinal();
-                    showFinalMessage('не готов?\n\nточно, ты же привык к формату повестки из военкомата, когда нет варианта отказаться.\n\n надо было наверное не спрашивать у него мнения утютютютю, и он бы покорно стоя на коленях молча открыл рот что бы поймать плевок.\n\n ведь так тебя приучили, да?\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nведь если ты скажешь да, придется думать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого человека?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nи как хорошо она описывает тебя во всех сферах.\n\nда тебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил свой рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, может твоя дырка на лице изначально была предназначена лишь для поедания дерьма?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным "переждавшим смуту"\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?');
+                case 'notready':
+                    currentBox.classList.add('hidden');
+                    showFinalMessage('не готов?\n\nточно, ты же привык к формату повестки из военкомата, когда нет варианта отказаться.\n\n надо было наверное не спрашивать у него мнения утютютютю, и он бы покорно стоя на коленях молча открыл рот что бы поймать плевок.\n\n ведь так тебя приучили, да?\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nведь если ты скажешь да, придется думать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого человека?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nи как хорошо она описывает тебя во всех сферах.\n\nда тебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил свой рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, может твоя дырка на лице изначально была предназначена лишь для поедания дерьма?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным \"переждавшим смуту\"\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?', true);
                     break;
-                }
                 case 'dontunderstand':
-                    // Переход к третьему вопросу
                     currentBox.classList.add('hidden');
                     showQuestion('questionBox3');
                     break;
                 case 'understand':
-                    // Переход к пятому вопросу
                     currentBox.classList.add('hidden');
                     showQuestion('questionBox5');
                     break;
                 case 'gotcha':
-                    // Переход к пятому вопросу
                     currentBox.classList.add('hidden');
                     showQuestion('questionBox5');
                     break;
                 case 'notgotcha':
-                    // Финальное сообщение, не скрываем контент
                     currentBox.classList.add('hidden');
                     showFinalMessage('ты соврал в первом вопросе', false);
                     break;
-                case 'ready':
-                    // Финальное сообщение, не скрываем контент
+                case 'ready2':
                     currentBox.classList.add('hidden');
                     showFinalMessage('2', false);
                     break;
                 case 'ido':
-                    // Переход к шестому вопросу
                     currentBox.classList.add('hidden');
                     showQuestion('questionBox6');
                     break;
                 case 'idont':
-                    // Финальное сообщение, не скрываем контент
                     currentBox.classList.add('hidden');
                     showFinalMessage('4', false);
+                    break;
+                case 'cant':
+                case 'cant2':
+                    currentBox.classList.add('hidden');
+                    showFinalMessage('конец', false);
                     break;
             }
         }
 
-        // Сброс теста по клику на krisavdome
-        // Скрывает финальный блок, восстанавливает контент, показывает первый вопрос
         function resetTest() {
-            // Скрыть финальный блок
-            var final = document.getElementById('finalMessage');
-            if(final) {
+            const final = document.getElementById('finalMessage');
+            if (final) {
                 final.classList.add('hidden');
-                final.style.display = '';
             }
-            // Показать всё только если было скрыто (только после "не готов")
-            if(window._contentHidden) restoreAllContent();
-
-            // Рекурсивно восстановить видимость всех потомков questionBox*
-            // Это нужно, чтобы кнопки и текст точно были видимы после возврата
-            function restoreBox(boxId) {
-                var el = document.getElementById(boxId);
-                if(!el) return;
-                function restoreRecursive(node) {
-                    if(node.hasAttribute && node.hasAttribute('data-original-display')) {
-                        node.style.display = node.getAttribute('data-original-display');
-                        node.removeAttribute('data-original-display');
-                    } else {
-                        node.style.display = '';
-                    }
-                    if(node.classList) node.classList.remove('hidden');
-                    if(node.children && node.children.length > 0) {
-                        Array.from(node.children).forEach(restoreRecursive);
-                    }
-                }
-                restoreRecursive(el);
+            
+            if (window._contentHidden) {
+                restoreAllContent();
             }
-            ['questionBox','questionBox2','questionBox3','questionBox4','questionBox5','questionBox6'].forEach(restoreBox);
 
-            // Скрыть все вопросы кроме первого
             ['questionBox2','questionBox3','questionBox4','questionBox5','questionBox6'].forEach(function(id){
-                var el = document.getElementById(id);
-                if(el) el.classList.add('hidden');
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
             });
+            
             document.getElementById('questionBox').classList.remove('hidden');
         }
 
-        // Навешиваем обработчик на krisavdome (логотип в хедере)
-        // При клике сбрасывает тест, если показан финальный блок
         window.addEventListener('DOMContentLoaded', function() {
-            var logo = document.querySelector('.header img[alt="krisavdome"]');
-            if(logo) {
+            const logo = document.querySelector('.header img[alt="krisavdome"]');
+            if (logo) {
                 logo.addEventListener('click', function() {
-                    // Если финальный блок видим — сбросить тест
-                    if(!document.getElementById('finalMessage').classList.contains('hidden')) {
-                        resetTest();
-                    }
+                    // Просто перезагружаем страницу
+                    window.location.reload();
                 });
             }
         });
         
-        // Показывает вопрос по id (убирает .hidden)
         function showQuestion(boxId) {
             document.getElementById(boxId).classList.remove('hidden');
         }
         
-        // Показывает финальное сообщение
-        // message — текст, hideContent — скрывать ли весь контент (true только для "не готов")
         function showFinalMessage(message, hideContent) {
             document.getElementById('finalText').textContent = message;
             document.getElementById('finalMessage').classList.remove('hidden');
-            if(hideContent) hideAllContentExceptFinal();
+            if (hideContent) {
+                hideAllContentExceptFinal();
+            }
         }
-        
     </script>
 </body>
 </html>
