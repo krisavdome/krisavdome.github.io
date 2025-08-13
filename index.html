@@ -236,54 +236,7 @@
         <div id="dialogContainer" style="display: flex; align-items: flex-start; gap: 2vw; max-width: 100vw; padding: 2vw;">
             <img src="peschanka.png" alt="Peschanka" style="width: 20vw; object-fit: contain; margin-left: 5vw; align-self: center;">
             <div id="questionsWrapper" style="flex: 1;">
-                <!-- Интерактивный блок с вопросами -->
-                <section id="questionBox" class="question-box">
-                    <div class="question-text" id="questionText">стой, у меня к тебе серьезный разговор</div>
-                    <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('ready')">я готов</button>
-                        <button class="answer-btn" onclick="selectAnswer('notready')">я не готов</button>
-                    </div>
-                </section>
-
-                <section id="questionBox2" class="question-box hidden">
-                    <div class="question-text" id="questionText2">как так вышло, что ты до сих пор не осознал что происходит?</div>
-                    <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('dontunderstand')">я не понимаю о чем ты</button>
-                        <button class="answer-btn" onclick="selectAnswer('understand')">я осознал</button>
-                    </div>
-                </section>
-
-                <section id="questionBox3" class="question-box hidden">
-                    <div class="question-text" id="questionText3">об ущемлении твоих прав</div>
-                    <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('gotcha')">понял</button>
-                        <button class="answer-btn" onclick="selectAnswer('notgotcha')">не понял</button>
-                    </div>
-                </section>
-
-                <section id="questionBox4" class="question-box hidden">
-                    <div class="question-text" id="questionText4">хорошо</div>
-                    <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('ready2')">5</button>
-                    </div>
-                </section>
-
-                <section id="questionBox5" class="question-box hidden">
-                    <div class="question-text" id="questionText5">и все еще молчишь?</div>
-                    <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('ido')">я молчу</button>
-                        <button class="answer-btn" onclick="selectAnswer('idont')">я не молчу</button>
-                    </div>
-                </section>
-
-                <section id="questionBox6" class="question-box hidden">
-                    <div class="question-text" id="questionText6">почему</div>
-                    <div class="answer-buttons">
-                        <button class="answer-btn" onclick="selectAnswer('cant')">1</button>
-                        <button class="answer-btn" onclick="selectAnswer('cant2')">2</button>
-                    </div>
-                </section>
-
+                <!-- Интерактивный блок с вопросами (рендерится динамически) -->
                 <section id="finalMessage" class="question-box hidden">
                     <div class="question-text" id="finalText"></div>
                 </section>
@@ -572,51 +525,121 @@
             window._contentHidden = false;
         }
 
+
+        // Текст для финального ответа "notready"
+        const bigNotReadyText = 'не готов?\n\nточно, ты же привык к формату повестки из военкомата, когда нет варианта отказаться.\n\n надо было наверное не спрашивать у него мнения утютютютю, и он бы покорно стоя на коленях молча открыл рот что бы поймать плевок.\n\n ведь так тебя приучили, да?\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nведь если ты скажешь да, придется думать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого человека?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nи как хорошо она описывает тебя во всех сферах.\n\nда тебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил свой рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, может твоя дырка на лице изначально была предназначена лишь для поедания дерьма?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным \"переждавшим смуту\"\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?';
+
+        // Объект сценария для диалога
+        const dialogFlow = {
+            ready:      { next: 'questionBox2' },
+            notready:   { final: bigNotReadyText, hideContent: true },
+            dontunderstand: { next: 'questionBox3' },
+            understand: { next: 'questionBox5' },
+            gotcha:     { next: 'questionBox5' },
+            notgotcha:  { final: 'ты соврал в первом вопросе', hideContent: false },
+            ready2:     { final: '2', hideContent: false },
+            ido:        { next: 'questionBox6' },
+            idont:      { final: '4', hideContent: false },
+            cant:       { final: 'конец', hideContent: false },
+            cant2:      { final: 'конец', hideContent: false }
+        };
+
+        // Массив вопросов и вариантов ответов
+        const questions = [
+            {
+                id: 'questionBox',
+                text: 'стой, у меня к тебе серьезный разговор',
+                answers: [
+                    { label: 'я готов', action: 'ready' },
+                    { label: 'я не готов', action: 'notready' }
+                ]
+            },
+            {
+                id: 'questionBox2',
+                text: 'как так вышло, что ты до сих пор не осознал что происходит?',
+                answers: [
+                    { label: 'я не понимаю о чем ты', action: 'dontunderstand' },
+                    { label: 'я осознал', action: 'understand' }
+                ]
+            },
+            {
+                id: 'questionBox3',
+                text: 'об ущемлении твоих прав',
+                answers: [
+                    { label: 'понял', action: 'gotcha' },
+                    { label: 'не понял', action: 'notgotcha' }
+                ]
+            },
+            {
+                id: 'questionBox4',
+                text: 'хорошо',
+                answers: [
+                    { label: '5', action: 'ready2' }
+                ]
+            },
+            {
+                id: 'questionBox5',
+                text: 'и все еще молчишь?',
+                answers: [
+                    { label: 'я молчу', action: 'ido' },
+                    { label: 'я не молчу', action: 'idont' }
+                ]
+            },
+            {
+                id: 'questionBox6',
+                text: 'почему',
+                answers: [
+                    { label: '1', action: 'cant' },
+                    { label: '2', action: 'cant2' }
+                ]
+            }
+        ];
+
+        // Функция для рендера вопросов
+        function renderQuestions(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            // Удаляем все кроме finalMessage
+            Array.from(container.children).forEach(child => {
+                if (child.id !== 'finalMessage') {
+                    container.removeChild(child);
+                }
+            });
+            questions.forEach((q, idx) => {
+                const section = document.createElement('section');
+                section.className = 'question-box' + (idx === 0 ? '' : ' hidden');
+                section.id = q.id;
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question-text';
+                qDiv.textContent = q.text;
+                section.appendChild(qDiv);
+                const btnsDiv = document.createElement('div');
+                btnsDiv.className = 'answer-buttons';
+                q.answers.forEach(ans => {
+                    const btn = document.createElement('button');
+                    btn.className = 'answer-btn';
+                    btn.setAttribute('data-action', ans.action);
+                    btn.type = 'button';
+                    btn.textContent = ans.label;
+                    btnsDiv.appendChild(btn);
+                });
+                section.appendChild(btnsDiv);
+                // Вставляем перед finalMessage
+                const finalMsg = document.getElementById('finalMessage');
+                container.insertBefore(section, finalMsg);
+            });
+        }
+
         function selectAnswer(answer) {
             const currentBox = document.querySelector('.question-box:not(.hidden)');
-            
-            switch(answer) {
-                case 'ready':
-                    currentBox.classList.add('hidden');
-                    showQuestion('questionBox2');
-                    break;
-                case 'notready':
-                    currentBox.classList.add('hidden');
-                    showFinalMessage('не готов?\n\nточно, ты же привык к формату повестки из военкомата, когда нет варианта отказаться.\n\n надо было наверное не спрашивать у него мнения утютютютю, и он бы покорно стоя на коленях молча открыл рот что бы поймать плевок.\n\n ведь так тебя приучили, да?\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nведь если ты скажешь да, придется думать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого человека?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nи как хорошо она описывает тебя во всех сферах.\n\nда тебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил свой рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, может твоя дырка на лице изначально была предназначена лишь для поедания дерьма?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным \"переждавшим смуту\"\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?', true);
-                    break;
-                case 'dontunderstand':
-                    currentBox.classList.add('hidden');
-                    showQuestion('questionBox3');
-                    break;
-                case 'understand':
-                    currentBox.classList.add('hidden');
-                    showQuestion('questionBox5');
-                    break;
-                case 'gotcha':
-                    currentBox.classList.add('hidden');
-                    showQuestion('questionBox5');
-                    break;
-                case 'notgotcha':
-                    currentBox.classList.add('hidden');
-                    showFinalMessage('ты соврал в первом вопросе', false);
-                    break;
-                case 'ready2':
-                    currentBox.classList.add('hidden');
-                    showFinalMessage('2', false);
-                    break;
-                case 'ido':
-                    currentBox.classList.add('hidden');
-                    showQuestion('questionBox6');
-                    break;
-                case 'idont':
-                    currentBox.classList.add('hidden');
-                    showFinalMessage('4', false);
-                    break;
-                case 'cant':
-                case 'cant2':
-                    currentBox.classList.add('hidden');
-                    showFinalMessage('конец', false);
-                    break;
+            if (currentBox) currentBox.classList.add('hidden');
+            const step = dialogFlow[answer];
+            if (!step) return;
+            if (step.next) {
+                showQuestion(step.next);
+            }
+            if (step.final !== undefined) {
+                showFinalMessage(step.final, !!step.hideContent);
             }
         }
 
@@ -639,6 +662,18 @@
         }
 
         window.addEventListener('DOMContentLoaded', function() {
+            // Рендерим вопросы
+            renderQuestions('questionsWrapper');
+            // Делегирование событий для ответов
+            const wrapper = document.getElementById('questionsWrapper');
+            if (wrapper) {
+                wrapper.addEventListener('click', function(e) {
+                    const btn = e.target.closest('.answer-btn');
+                    if (btn && btn.dataset.action) {
+                        selectAnswer(btn.dataset.action);
+                    }
+                });
+            }
             const logo = document.querySelector('.header img[alt="krisavdome"]');
             if (logo) {
                 logo.addEventListener('click', function() {
