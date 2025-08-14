@@ -1,735 +1,884 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>крысавдоме</title>
     <style>
-        @font-face {
-            font-family: 'Fritz Quadrata Cyrillic';
-            src: url('./FritzQuadrataCyrillic.woff2') format('woff2'),
-            url('./FritzQuadrataCyrillic.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+      @font-face {
+        font-family: "Fritz Quadrata Cyrillic";
+        src: url("./FritzQuadrataCyrillic.woff2") format("woff2"),
+          url("./FritzQuadrataCyrillic.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
 
-        .fritz-font {
-            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-        }
+      .fritz-font {
+        font-family: "Fritz Quadrata Cyrillic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+      }
 
-        body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            line-height: 1.25;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background-color: #000;
+        color: #fff;
+        font-family: "Fritz Quadrata Cyrillic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1.25;
+      }
 
-        h1 {
-            display: block;
-            position: relative;
-            text-align: center;
-            font-size: 5vw;
-            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-        }
+      h1 {
+        display: block;
+        position: relative;
+        text-align: center;
+        font-size: 5vw;
+        font-family: "Fritz Quadrata Cyrillic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+      }
 
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-        .image-container {
-            position: relative;
-            left: 0;
-            top: 5vw;
-            max-width: 100%;
-            z-index: 4;
-        }
+      .image-container {
+        position: relative;
+        left: 0;
+        top: 5vw;
+        max-width: 100%;
+        z-index: 4;
+      }
 
-        p {
-            font-size: 2vw;
-            position: relative;
-            top: 5vw;
-        }
+      p {
+        font-size: 2vw;
+        position: relative;
+        top: 5vw;
+      }
 
-        .question-box {
-            position: relative;
-            width: 100%;
-            max-width: 60vw;
-            display: block;
-            margin: 2vw 0 2vw 0;
-            margin-left: 0;
-            padding: 1.5vw 2vw;
-            text-align: left;
-            z-index: 10;
-            white-space: pre-line;
-        }
+      .question-box {
+        position: relative;
+        width: 100%;
+        max-width: 60vw;
+        display: block;
+        margin: 2vw 0 2vw 0;
+        margin-left: 0;
+        padding: 1.5vw 2vw;
+        text-align: left;
+        z-index: 10;
+        white-space: pre-line;
+      }
 
-        .question-text {
-            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 2.5vw;
-            margin-bottom: 3vw;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-        }
+      .question-text {
+        font-family: "Fritz Quadrata Cyrillic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.5vw;
+        margin-bottom: 3vw;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
 
-        .answer-buttons {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 3vw;
-            flex-wrap: wrap;
-            margin-left: 0;
-        }
+      .answer-buttons {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 3vw;
+        flex-wrap: wrap;
+        margin-left: 0;
+      }
 
-        .answer-btn {
-            padding: 0.2vw;
-            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 1.8vw;
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-            margin: 0;
-            text-align: left;
-        }
+      .answer-btn {
+        padding: 0.2vw;
+        font-family: "Fritz Quadrata Cyrillic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.8vw;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        margin: 0;
+        text-align: left;
+      }
 
-        .answer-btn:hover {
-            transform: scale(1.05);
-        }
+      .answer-btn:hover {
+        transform: scale(1.05);
+      }
 
-        .question-box.hidden {
-            display: none;
-        }
+      .question-box.hidden {
+        display: none;
+      }
 
-        /* Общие базовые классы для hover эффектов */
-        .hover-scale-base {
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .hover-scale:hover, .hover-scale-flip:hover {
-            transform: scale(1.1);
-        }
-        .hover-scale {
-            /* no additional transform, only base */
-        }
-        .hover-scale-flip {
-            transform: scaleX(-1);
-        }
-        .hover-scale-flip:hover {
-            transform: scaleX(-1) scale(1.1);
-        }
+      /* Общие базовые классы для hover эффектов */
+      .hover-scale-base {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      .hover-scale:hover,
+      .hover-scale-flip:hover {
+        transform: scale(1.1);
+      }
+      .hover-scale {
+        /* no additional transform, only base */
+      }
+      .hover-scale-flip {
+        transform: scaleX(-1);
+      }
+      .hover-scale-flip:hover {
+        transform: scaleX(-1) scale(1.1);
+      }
 
-        /* Класс для позиционирования элементов */
-        .positioned-element {
-            position: relative;
-            width: fit-content;
-            height: fit-content;
-            display: inline-block;
-        }
+      /* Класс для позиционирования элементов */
+      .positioned-element {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+        display: inline-block;
+      }
 
-        /* Класс для hover текста */
-        .hover-text {
-            position: absolute;
-            color: white;
-            font-size: 2vw;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            z-index: 6;
-            /* Удалены индивидуальные top/left/width - только в инлайне */
-        }
+      /* Класс для hover текста */
+      .hover-text {
+        position: absolute;
+        color: white;
+        font-size: 2vw;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        z-index: 6;
+        /* Удалены индивидуальные top/left/width - только в инлайне */
+      }
 
-        /* Классы для позиционирования элементов */
-        .position-top-28-left-35 {
-            position: relative;
-            top: 28vw;
-            left: 35vw;
-        }
+      /* Классы для позиционирования элементов */
+      .position-top-28-left-35 {
+        position: relative;
+        top: 28vw;
+        left: 35vw;
+      }
 
-        .position-top-10-left-10 {
-            position: relative;
-            top: 10vw;
-            left: 10vw;
-        }
+      .position-top-10-left-10 {
+        position: relative;
+        top: 10vw;
+        left: 10vw;
+      }
 
-        .position-top-neg10-left-67 {
-            position: relative;
-            top: -10vw;
-            left: 67vw;
-        }
+      .position-top-neg10-left-67 {
+        position: relative;
+        top: -10vw;
+        left: 67vw;
+      }
 
-        .position-center-auto {
-            position: relative;
-            margin: 6vw auto;
-        }
+      .position-center-auto {
+        position: relative;
+        margin: 6vw auto;
+      }
 
-        /* Стили для aside (заменяет table.infobox) */
-        aside.infobox {
-            width: 15vw;
-            text-align: left;
-            font-size: 0.7vw;
-            line-height: 1.5em;
-            border: 2px solid #1a1a1a;
-            position: relative;
-            top: -15vw;
-            right: 2vw;
-            font-family: 'Fritz Quadrata Cyrillic', sans-serif;
-            font-style: normal;
-            font-weight: normal;
-            float: right;
-            border-collapse: collapse;
-            background-color: transparent;
-        }
+      /* Стили для aside (заменяет table.infobox) */
+      aside.infobox {
+        width: 15vw;
+        text-align: left;
+        font-size: 0.7vw;
+        line-height: 1.5em;
+        border: 2px solid #1a1a1a;
+        position: relative;
+        top: -15vw;
+        right: 2vw;
+        font-family: "Fritz Quadrata Cyrillic", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        float: right;
+        border-collapse: collapse;
+        background-color: transparent;
+      }
 
-        aside.infobox > div:nth-child(odd) {
-            background-color: #ff85da;
-            font-size: 1.3vw;
-            border: 1px solid #1a1a1a;
-            padding: 0.4vw 0.8vw;
-            text-align: center;
-            font-weight: bold;
-            margin: 0.5vw;
-        }
+      aside.infobox > div:nth-child(odd) {
+        background-color: #ff85da;
+        font-size: 1.3vw;
+        border: 1px solid #1a1a1a;
+        padding: 0.4vw 0.8vw;
+        text-align: center;
+        font-weight: bold;
+        margin: 0.5vw;
+      }
 
-        aside.infobox > div:nth-child(even) {
-            text-align: center;
-            font-size: 1.1vw;
-            border: 1px solid #1a1a1a;
-            padding: 0.5vw 0.8vw;
-            background-color: transparent;
-            margin: 0.2vw;
-        }
-        pre {
-            line-height: normal;
-        }
+      aside.infobox > div:nth-child(even) {
+        text-align: center;
+        font-size: 1.1vw;
+        border: 1px solid #1a1a1a;
+        padding: 0.5vw 0.8vw;
+        background-color: transparent;
+        margin: 0.2vw;
+      }
+      pre {
+        line-height: normal;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <header class="header" style="position: sticky; top: 0; z-index: 100; height: 8vmax; display: flex; align-items: center; justify-content: center;">
-        <div class="header-bg" style="position: absolute; top: 0; width: 100%; height: 120%; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0); z-index: -1; mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);">
-        </div>
-        <img src="./krisavdome.png" alt="krisavdome" style="height: 6vmax; margin: 0 auto;">
+  <body>
+    <header
+      class="header"
+      style="
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: 8vmax;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        class="header-bg"
+        style="
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 120%;
+          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0);
+          z-index: -1;
+          mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 70%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        "
+      ></div>
+      <img
+        src="./krisavdome.png"
+        alt="krisavdome"
+        style="height: 6vmax; margin: 0 auto"
+      />
     </header>
 
     <main>
-        <div id="dialogContainer" style="display: flex; align-items: flex-start; gap: 2vw; max-width: 100vw; padding: 2vw;">
-            <img src="peschanka.png" alt="Peschanka" style="width: 20vw; object-fit: contain; margin-left: 5vw; align-self: center;">
-            <div id="questionsWrapper" style="flex: 1;">
-                <!-- Интерактивный блок с вопросами (рендерится динамически) -->
-                <section id="finalMessage" class="question-box hidden">
-                    <div class="question-text" id="finalText"></div>
-                </section>
-            </div>
+      <div
+        id="dialogContainer"
+        style="
+          display: flex;
+          align-items: flex-start;
+          gap: 2vw;
+          max-width: 100vw;
+          padding: 2vw;
+        "
+      >
+        <img
+          src="peschanka.png"
+          alt="Peschanka"
+          style="
+            width: 20vw;
+            object-fit: contain;
+            margin-left: 5vw;
+            align-self: center;
+          "
+        />
+        <div id="questionsWrapper" style="flex: 1">
+          <!-- Интерактивный блок с вопросами (рендерится динамически) -->
+          <section id="finalMessage" class="question-box hidden">
+            <div class="question-text" id="finalText"></div>
+          </section>
         </div>
+      </div>
 
-    <section class="content-section">
-        <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
-            <div class="hover-scale hover-scale-base" style="width: 30%; display: flex; justify-content: center; position: relative;"
-                 onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
-                 onmouseout="this.querySelector('.hover-text').style.opacity='0';">
-                <div style="position: relative;">
-                    <img src="yazva.png" alt="yazva" style="width: 18vw;">
-                    <div class="hover-text" style="top: 75%; left: 50%; width: 18vw; text-align: center; transform: translateX(-50%);"></div>
-                </div>
+      <section class="content-section">
+        <div
+          style="
+            display: flex;
+            justify-content: space-evenly;
+            top: 5vw;
+            width: 80vw;
+            position: relative;
+          "
+        >
+          <div
+            class="hover-scale hover-scale-base"
+            style="
+              width: 30%;
+              display: flex;
+              justify-content: center;
+              position: relative;
+            "
+            onmouseover="this.querySelector('.hover-text').style.opacity='1';"
+            onmouseout="this.querySelector('.hover-text').style.opacity='0';"
+          >
+            <div style="position: relative">
+              <img src="yazva.png" alt="yazva" style="width: 18vw" />
+              <div
+                class="hover-text"
+                style="
+                  top: 75%;
+                  left: 50%;
+                  width: 18vw;
+                  text-align: center;
+                  transform: translateX(-50%);
+                "
+              ></div>
             </div>
+          </div>
 
-            <div class="hover-scale hover-scale-base" style="width: 30%; display: flex; justify-content: center; position: relative;"
-                 onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
-                 onmouseout="this.querySelector('.hover-text').style.opacity='0';">
-                <div style="position: relative;">
-                    <img src="./CSTC Circuit Diagram.png" alt="cstc loop" style="width: 18vw;">
-                    <div class="hover-text" style="top: 75%; left: 50%; width: 18vw; text-align: center; transform: translateX(-50%);"></div>
-                </div>
+          <div
+            class="hover-scale hover-scale-base"
+            style="
+              width: 30%;
+              display: flex;
+              justify-content: center;
+              position: relative;
+            "
+            onmouseover="this.querySelector('.hover-text').style.opacity='1';"
+            onmouseout="this.querySelector('.hover-text').style.opacity='0';"
+          >
+            <div style="position: relative">
+              <img
+                src="./CSTC Circuit Diagram.png"
+                alt="cstc loop"
+                style="width: 18vw"
+              />
+              <div
+                class="hover-text"
+                style="
+                  top: 75%;
+                  left: 50%;
+                  width: 18vw;
+                  text-align: center;
+                  transform: translateX(-50%);
+                "
+              ></div>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-        <aside class="infobox">
-            <div>Крысы</div>
-            <div>
-                <img src="./krisavochkah.JPG" alt="крысавдоме" style="width: 15vw; margin: 0 auto; height: 10vw;">
-                <br>
-                <span>крысавдоме<br>(<i>открой глаза</i>)</span>
-            </div>
-            <div>что к чему</div>
-            <div>
-                <div><b>сайт в активной разработке и todo лист растет гораздо быстрее чем я его выполняю, даже делегируя на ChatGPT</b><br>
-                    </div>
-            </div>
-            <div></div>
-        </aside>
+      <aside class="infobox">
+        <div>Крысы</div>
+        <div>
+          <img
+            src="./krisavochkah.JPG"
+            alt="крысавдоме"
+            style="width: 15vw; margin: 0 auto; height: 10vw"
+          />
+          <br />
+          <span>крысавдоме<br />(<i>открой глаза</i>)</span>
+        </div>
+        <div>что к чему</div>
+        <div>
+          <div>
+            <b
+              >сайт в активной разработке и todo лист растет гораздо быстрее чем
+              я его выполняю, даже делегируя на ChatGPT</b
+            ><br />
+          </div>
+        </div>
+        <div></div>
+      </aside>
 
-    <div class="positioned-element" style="top: 12vw; left: 5vw;">
-        <img src="./krisassirom.png" alt="krisassirom" 
-            class="hover-scale-flip hover-scale-base"
-            style="position: relative; width: 45vw;" 
-            onmouseover="this.nextElementSibling.style.opacity='1';" 
-            onmouseout="this.nextElementSibling.style.opacity='0';"
-            onclick="playSound('ratSound')">
-        <div class="hover-text" style="left: 4vw; top: 18vw; width: 45vw; text-align: center;"></div>
-    </div>
+      <div class="positioned-element" style="top: 12vw; left: 5vw">
+        <img
+          src="./krisassirom.png"
+          alt="krisassirom"
+          class="hover-scale-flip hover-scale-base"
+          style="position: relative; width: 45vw"
+          onmouseover="this.nextElementSibling.style.opacity='1';"
+          onmouseout="this.nextElementSibling.style.opacity='0';"
+          onclick="playSound('ratSound')"
+        />
+        <div
+          class="hover-text"
+          style="left: 4vw; top: 18vw; width: 45vw; text-align: center"
+        ></div>
+      </div>
     </main>
 
-    <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 8vw; width: 100%;">
-        <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
-           .-----------.
-        ,-'      |      '-.
-     ,-'         |         '-.
-    /            |            \
-  ,'             |             `.
- ;               |               :
- ;               |               :
-;                |                :
-|                |                |
-|                |                |
-:                |                ;
- :               |               ;
- :             +-<-+             ;
-  \         +--+ | +--+         /
-   `.    +--+    |    +--+    ,'
-     \---+       |       +---/
-      '-.        |        ,-'
-         '-.     v     ,-'
-            `---------'
-        </pre>
-        
-        <img src="./krisavdome.gif" alt="bolshie yayca" style="width: 35vw; object-fit: contain;">
-        
-        <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden;">
-           .-----------.
-        ,-'      |      '-.
-     ,-'         |         '-.
-    /            |            \
-  ,'             |             `.
- ;               |               :
- ;               |               :
-;                |                :
-|                |                |
-|                |                |
-:                |                ;
- :               |               ;
- :             +-<-+             ;
-  \         +--+ | +--+         /
-   `.    +--+    |    +--+    ,'
-     \---+       |       +---/
-      '-.        |        ,-'
-         '-.     v     ,-'
-            `---------'
-        </pre>
-    </div>
-
-    <img src="./cult estetiki.png" 
-        class="hover-scale hover-scale-base position-top-28-left-35"
-        style="width: 30vw;" 
-        onmouseover="toggleHoverText('ваши представления о значимости внешнего иллюзорны. вы не осознаете как оставляете важные<br>вопросы о мире и о себе в тени.')"
-        onmouseout="toggleHoverText(null)">
-
-    <div style="position: relative; width: fit-content;">
-        <img src="./commercia.png" 
-            class="hover-scale hover-scale-base position-top-10-left-10"
-            style="width: 20vw;" 
-            onmouseover="toggleHoverText('как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.')"
-            onmouseout="toggleHoverText(null)">
-        <div id="hoverText" class="hover-text" style="
-            left: 0;
-            top: 180%;
-            max-width: 80vw;
-            text-align: center;
-            transform: translateX(10vw);
-            white-space: pre;
-            word-wrap: break-word;
-        "></div>
-    </div>
-
-    <img src="./mass cultura.png" 
-        class="hover-scale hover-scale-base position-top-neg10-left-67"
-        style="width: 30vw;" 
-        onmouseover="toggleHoverText('в большинстве своем, массовая культура — это психотропное вещество, дозирующее смысл<br>до уровня, безопасного для интеллектуального инфантила. всё, что в ней есть — это<br>развлечение, пригодное для потребления тем, кто боится боли мышления.')"
-        onmouseout="toggleHoverText(null)">
-
-    <div class="position-center-auto" style="width: 25vw;">
-        <img src="./otkroyglaza.png" alt="otkroy glaza" 
-            class="hover-scale hover-scale-base"
-            style="position: relative; width: 100%;" 
-            onmouseover="this.nextElementSibling.style.opacity='1'; playSound('otkroyGlazaSound');"
-            onmouseout="this.nextElementSibling.style.opacity='0';">
-        <div class="hover-text" style="
-            left: 50%;
-            top: 16vw;
-            width: 100%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 2;
-        ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо</div>
-    </div>
-
-    <footer style="
+    <div
+      style="
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        gap: 2vw;
+        top: 8vw;
         width: 100%;
-        height: 20vw;
-        margin-top: 20vw;
-    "></footer>
+      "
+    >
+      <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden">
+           .-----------.
+        ,-'      |      '-.
+     ,-'         |         '-.
+    /            |            \
+  ,'             |             `.
+ ;               |               :
+ ;               |               :
+;                |                :
+|                |                |
+|                |                |
+:                |                ;
+ :               |               ;
+ :             +-<-+             ;
+  \         +--+ | +--+         /
+   `.    +--+    |    +--+    ,'
+     \---+       |       +---/
+      '-.        |        ,-'
+         '-.     v     ,-'
+            `---------'
+        </pre
+      >
+
+      <img
+        src="./krisavdome.gif"
+        alt="bolshie yayca"
+        style="width: 35vw; object-fit: contain"
+      />
+
+      <pre style="font-size: 1vw; margin: 0; padding: 0; overflow-x: hidden">
+           .-----------.
+        ,-'      |      '-.
+     ,-'         |         '-.
+    /            |            \
+  ,'             |             `.
+ ;               |               :
+ ;               |               :
+;                |                :
+|                |                |
+|                |                |
+:                |                ;
+ :               |               ;
+ :             +-<-+             ;
+  \         +--+ | +--+         /
+   `.    +--+    |    +--+    ,'
+     \---+       |       +---/
+      '-.        |        ,-'
+         '-.     v     ,-'
+            `---------'
+        </pre
+      >
+    </div>
+
+    <img
+      src="./cult estetiki.png"
+      class="hover-scale hover-scale-base position-top-28-left-35"
+      style="width: 30vw"
+      onmouseover="toggleHoverText('ваши представления о значимости внешнего иллюзорны. вы не осознаете как оставляете важные<br>вопросы о мире и о себе в тени.')"
+      onmouseout="toggleHoverText(null)"
+    />
+
+    <div style="position: relative; width: fit-content">
+      <img
+        src="./commercia.png"
+        class="hover-scale hover-scale-base position-top-10-left-10"
+        style="width: 20vw"
+        onmouseover="toggleHoverText('как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.')"
+        onmouseout="toggleHoverText(null)"
+      />
+      <div
+        id="hoverText"
+        class="hover-text"
+        style="
+          left: 0;
+          top: 180%;
+          max-width: 80vw;
+          text-align: center;
+          transform: translateX(10vw);
+          white-space: pre;
+          word-wrap: break-word;
+        "
+      ></div>
+    </div>
+
+    <img
+      src="./mass cultura.png"
+      class="hover-scale hover-scale-base position-top-neg10-left-67"
+      style="width: 30vw"
+      onmouseover="toggleHoverText('в большинстве своем, массовая культура — это психотропное вещество, дозирующее смысл<br>до уровня, безопасного для интеллектуального инфантила. всё, что в ней есть — это<br>развлечение, пригодное для потребления тем, кто боится боли мышления.')"
+      onmouseout="toggleHoverText(null)"
+    />
+
+    <div class="position-center-auto" style="width: 25vw">
+      <img
+        src="./otkroyglaza.png"
+        alt="otkroy glaza"
+        class="hover-scale hover-scale-base"
+        style="position: relative; width: 100%"
+        onmouseover="this.nextElementSibling.style.opacity='1'; playSound('otkroyGlazaSound');"
+        onmouseout="this.nextElementSibling.style.opacity='0';"
+      />
+      <div
+        class="hover-text"
+        style="
+          left: 50%;
+          top: 16vw;
+          width: 100%;
+          transform: translateX(-50%);
+          text-align: center;
+          z-index: 2;
+        "
+      >
+        все вокруг потребляют дерьмо, все вокруг и есть дерьмо
+      </div>
+    </div>
+
+    <footer style="width: 100%; height: 20vw; margin-top: 20vw"></footer>
 
     <audio id="ratSound" preload="auto">
-        <source src="rat.mp3" type="audio/mpeg">
+      <source src="rat.mp3" type="audio/mpeg" />
     </audio>
 
     <audio id="otkroyGlazaSound" preload="auto">
-        <source src="otkroyglaza.mp3" type="audio/mpeg">
+      <source src="otkroyglaza.mp3" type="audio/mpeg" />
     </audio>
 
     <script>
-        function playSound(soundId, volume = 0.5) {
-            const sound = document.getElementById(soundId);
-            if (sound) {
-                sound.volume = volume;
-                sound.currentTime = 0;
-                sound.play().catch(error => {
-                    console.log('Ошибка воспроизведения звука:', error);
-                });
+      function playSound(soundId, volume = 0.5) {
+        const sound = document.getElementById(soundId);
+        if (sound) {
+          sound.volume = volume;
+          sound.currentTime = 0;
+          sound.play().catch((error) => {
+            console.log("Ошибка воспроизведения звука:", error);
+          });
+        }
+      }
+
+      function toggleHoverText(textOrNull) {
+        const hoverText = document.getElementById("hoverText");
+        if (hoverText) {
+          if (textOrNull !== null) {
+            hoverText.innerHTML = textOrNull;
+            hoverText.style.opacity = "1";
+          } else {
+            hoverText.style.opacity = "0";
+          }
+        }
+      }
+
+      window._contentHidden = false;
+
+      // Универсальная функция для скрытия/показа контента (true = показать всё, false = скрыть всё кроме финального)
+      function toggleContent(showAll) {
+        const main = document.querySelector("main");
+        if (!showAll) {
+          if (main) main.style.display = "none";
+          Array.from(document.body.children).forEach((child) => {
+            if (
+              child.tagName.toLowerCase() !== "header" &&
+              child.tagName.toLowerCase() !== "footer" &&
+              child.tagName.toLowerCase() !== "script" &&
+              child.tagName.toLowerCase() !== "audio" &&
+              !child.classList.contains("header") &&
+              child !== main
+            ) {
+              child.style.display = "none";
             }
-        }
-
-        function toggleHoverText(textOrNull) {
-            const hoverText = document.getElementById('hoverText');
-            if (hoverText) {
-                if (textOrNull !== null) {
-                    hoverText.innerHTML = textOrNull;
-                    hoverText.style.opacity = '1';
-                } else {
-                    hoverText.style.opacity = '0';
-                }
+          });
+          const final = document.getElementById("finalMessage");
+          if (final) {
+            if (!document.getElementById("tempFinalContainer")) {
+              const tempContainer = document.createElement("div");
+              tempContainer.id = "tempFinalContainer";
+              tempContainer.style.cssText =
+                "position: absolute; top: 10vw; left: 5vw; right: 5vw; z-index: 1000; max-height: calc(100vh - 20vw); overflow-y: auto; padding: 2vw;";
+              const finalClone = final.cloneNode(true);
+              finalClone.style.display = "block";
+              finalClone.classList.remove("hidden");
+              finalClone.style.position = "relative";
+              finalClone.style.top = "auto";
+              finalClone.style.left = "auto";
+              finalClone.style.transform = "none";
+              tempContainer.appendChild(finalClone);
+              document.body.appendChild(tempContainer);
             }
-        }
-
-        window._contentHidden = false;
-
-        // Универсальная функция для скрытия/показа контента (true = показать всё, false = скрыть всё кроме финального)
-        function toggleContent(showAll) {
-            const main = document.querySelector('main');
-            if (!showAll) {
-                if (main) main.style.display = 'none';
-                Array.from(document.body.children).forEach(child => {
-                    if (
-                        child.tagName.toLowerCase() !== 'header' &&
-                        child.tagName.toLowerCase() !== 'footer' &&
-                        child.tagName.toLowerCase() !== 'script' &&
-                        child.tagName.toLowerCase() !== 'audio' &&
-                        !child.classList.contains('header') &&
-                        child !== main
-                    ) {
-                        child.style.display = 'none';
-                    }
-                });
-                const final = document.getElementById('finalMessage');
-                if (final) {
-                    if (!document.getElementById('tempFinalContainer')) {
-                        const tempContainer = document.createElement('div');
-                        tempContainer.id = 'tempFinalContainer';
-                        tempContainer.style.cssText = 'position: absolute; top: 10vw; left: 5vw; right: 5vw; z-index: 1000; max-height: calc(100vh - 20vw); overflow-y: auto; padding: 2vw;';
-                        const finalClone = final.cloneNode(true);
-                        finalClone.style.display = 'block';
-                        finalClone.classList.remove('hidden');
-                        finalClone.style.position = 'relative';
-                        finalClone.style.top = 'auto';
-                        finalClone.style.left = 'auto';
-                        finalClone.style.transform = 'none';
-                        tempContainer.appendChild(finalClone);
-                        document.body.appendChild(tempContainer);
-                    }
-                }
-                window._contentHidden = true;
-            } else {
-                // showAll === true
-                const tempContainer = document.getElementById('tempFinalContainer');
-                if (tempContainer) tempContainer.remove();
-                if (main) main.style.display = '';
-                Array.from(document.body.children).forEach(child => {
-                    if (
-                        child.tagName.toLowerCase() !== 'header' &&
-                        child.tagName.toLowerCase() !== 'footer' &&
-                        child.tagName.toLowerCase() !== 'script' &&
-                        child.tagName.toLowerCase() !== 'audio' &&
-                        !child.classList.contains('header')
-                    ) {
-                        child.style.display = '';
-                    }
-                });
-                const final = document.getElementById('finalMessage');
-                if (final) final.classList.add('hidden');
-                window._contentHidden = false;
+          }
+          window._contentHidden = true;
+        } else {
+          // showAll === true
+          const tempContainer = document.getElementById("tempFinalContainer");
+          if (tempContainer) tempContainer.remove();
+          if (main) main.style.display = "";
+          Array.from(document.body.children).forEach((child) => {
+            if (
+              child.tagName.toLowerCase() !== "header" &&
+              child.tagName.toLowerCase() !== "footer" &&
+              child.tagName.toLowerCase() !== "script" &&
+              child.tagName.toLowerCase() !== "audio" &&
+              !child.classList.contains("header")
+            ) {
+              child.style.display = "";
             }
+          });
+          const final = document.getElementById("finalMessage");
+          if (final) final.classList.add("hidden");
+          window._contentHidden = false;
+        }
+      }
+
+      // Старые функции для совместимости
+      function hideAllContentExceptFinal() {
+        toggleContent(false);
+      }
+      function restoreAllContent() {
+        toggleContent(true);
+      }
+
+      // Текст для финального ответа "notready"
+      const bigNotReadyText =
+        'не готов?\n\nнеужели ты поверил?\nбыло бы наивно с моей стороны дать тебе возможность отказаться.\nменя за глупца держишь или сам им являешься?\n\nкаждый из вас не счесть который раз попадается на одни и те же приемы, позволяя государству строить вам же клетку\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nдумать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nтебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил себе рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, для чего рот использовал?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным "переждавшим смуту»\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?';
+
+      // Объект сценария для диалога
+      const dialogFlow = {
+        ready: { next: "questionBox2" },
+        notready: { final: bigNotReadyText, hideContent: true },
+        dontunderstand: { next: "questionBox3" },
+        understand: { next: "questionBox5" },
+        gotcha: { next: "questionBox5" },
+        notgotcha: { final: "ты соврал в первом вопросе", hideContent: false },
+        ready2: { final: "2", hideContent: false },
+        ido: { next: "questionBox6" },
+        idont: { final: "4", hideContent: false },
+        cant: { final: "конец", hideContent: false },
+        cant2: { final: "конец", hideContent: false },
+      };
+
+      // Массив вопросов и вариантов ответов
+      const questions = [
+        {
+          id: "questionBox",
+          text: "у меня к тебе серьезный разговор о твоей гражданской позиции",
+          answers: [
+            { label: "я готов", action: "ready" },
+            { label: "я не готов", action: "notready" },
+          ],
+        },
+        {
+          id: "questionBox2",
+          text: "как так вышло, что ты до сих пор не осознал что происходит?",
+          answers: [
+            { label: "я не понимаю о чем ты", action: "dontunderstand" },
+            { label: "я осознал", action: "understand" },
+          ],
+        },
+        {
+          id: "questionBox3",
+          text: "об ущемлении твоих прав",
+          answers: [
+            { label: "понял", action: "gotcha" },
+            { label: "не понял", action: "notgotcha" },
+          ],
+        },
+        {
+          id: "questionBox4",
+          text: "хорошо",
+          answers: [{ label: "5", action: "ready2" }],
+        },
+        {
+          id: "questionBox5",
+          text: "и все еще молчишь?",
+          answers: [
+            { label: "я молчу", action: "ido" },
+            { label: "я не молчу", action: "idont" },
+          ],
+        },
+        {
+          id: "questionBox6",
+          text: "почему",
+          answers: [
+            { label: "1", action: "cant" },
+            { label: "2", action: "cant2" },
+          ],
+        },
+      ];
+
+      // Функция для рендера вопросов
+      function renderQuestions(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        // Удаляем все кроме finalMessage
+        Array.from(container.children).forEach((child) => {
+          if (child.id !== "finalMessage") {
+            container.removeChild(child);
+          }
+        });
+        questions.forEach((q, idx) => {
+          const section = document.createElement("section");
+          section.className = "question-box" + (idx === 0 ? "" : " hidden");
+          section.id = q.id;
+          const qDiv = document.createElement("div");
+          qDiv.className = "question-text";
+          qDiv.textContent = q.text;
+          section.appendChild(qDiv);
+          const btnsDiv = document.createElement("div");
+          btnsDiv.className = "answer-buttons";
+          q.answers.forEach((ans) => {
+            const btn = document.createElement("button");
+            btn.className = "answer-btn";
+            btn.setAttribute("data-action", ans.action);
+            btn.type = "button";
+            btn.textContent = ans.label;
+            btnsDiv.appendChild(btn);
+          });
+          section.appendChild(btnsDiv);
+          // Вставляем перед finalMessage
+          const finalMsg = document.getElementById("finalMessage");
+          container.insertBefore(section, finalMsg);
+        });
+      }
+
+      function selectAnswer(answer) {
+        const currentBox = document.querySelector(".question-box:not(.hidden)");
+        if (currentBox) currentBox.classList.add("hidden");
+        const step = dialogFlow[answer];
+        if (!step) return;
+        if (answer === "ido") {
+          showQuestion("questionBox6");
+          // Ждём рендеринга, затем заменяем кнопки на поле ввода
+          setTimeout(showTextInput, 0);
+          return;
+        }
+        if (step.next) {
+          showQuestion(step.next);
+        }
+        if (step.final !== undefined) {
+          showFinalMessage(step.final, !!step.hideContent);
+        }
+      }
+
+      function resetTest() {
+        const final = document.getElementById("finalMessage");
+        if (final) {
+          final.classList.add("hidden");
         }
 
-        // Старые функции для совместимости
-        function hideAllContentExceptFinal() {
-            toggleContent(false);
-        }
-        function restoreAllContent() {
-            toggleContent(true);
+        if (window._contentHidden) {
+          restoreAllContent();
         }
 
+        [
+          "questionBox2",
+          "questionBox3",
+          "questionBox4",
+          "questionBox5",
+          "questionBox6",
+        ].forEach(function (id) {
+          const el = document.getElementById(id);
+          if (el) el.classList.add("hidden");
+        });
 
-        // Текст для финального ответа "notready"
-        const bigNotReadyText = 'не готов?\n\nнеужели ты поверил?\nбыло бы наивно с моей стороны дать тебе возможность отказаться.\nменя за глупца держишь или сам им являешься?\n\nкаждый из вас не счесть который раз попадается на одни и те же приемы, позволяя государству строить вам же клетку\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nдумать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nтебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил себе рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, для чего рот использовал?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным \"переждавшим смуту»\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?';
+        document.getElementById("questionBox").classList.remove("hidden");
+      }
 
-        // Объект сценария для диалога
-        const dialogFlow = {
-            ready:      { next: 'questionBox2' },
-            notready:   { final: bigNotReadyText, hideContent: true },
-            dontunderstand: { next: 'questionBox3' },
-            understand: { next: 'questionBox5' },
-            gotcha:     { next: 'questionBox5' },
-            notgotcha:  { final: 'ты соврал в первом вопросе', hideContent: false },
-            ready2:     { final: '2', hideContent: false },
-            ido:        { next: 'questionBox6' },
-            idont:      { final: '4', hideContent: false },
-            cant:       { final: 'конец', hideContent: false },
-            cant2:      { final: 'конец', hideContent: false }
+      window.addEventListener("DOMContentLoaded", function () {
+        // Рендерим вопросы
+        renderQuestions("questionsWrapper");
+        // Делегирование событий для ответов
+        const wrapper = document.getElementById("questionsWrapper");
+        if (wrapper) {
+          wrapper.addEventListener("click", function (e) {
+            const btn = e.target.closest(".answer-btn");
+            if (btn && btn.dataset.action) {
+              selectAnswer(btn.dataset.action);
+            }
+          });
+        }
+        const logo = document.querySelector('.header img[alt="krisavdome"]');
+        if (logo) {
+          logo.addEventListener("click", function () {
+            // Просто перезагружаем страницу
+            window.location.reload();
+          });
+        }
+      });
+
+      function showQuestion(boxId) {
+        document.getElementById(boxId).classList.remove("hidden");
+      }
+
+      function showFinalMessage(message, hideContent) {
+        document.getElementById("finalText").textContent = message;
+        document.getElementById("finalMessage").classList.remove("hidden");
+        if (hideContent) {
+          hideAllContentExceptFinal();
+        }
+      }
+      // --- ДОБАВЛЕНО: функция для текстового ответа ---
+      function showTextInput() {
+        const currentBox = document.querySelector(".question-box:not(.hidden)");
+        if (!currentBox) return;
+
+        const btnContainer = currentBox.querySelector(".answer-buttons");
+        btnContainer.innerHTML = "";
+
+        const textarea = document.createElement("textarea");
+        textarea.placeholder = "потому что...";
+        textarea.style.width = "100%";
+        textarea.style.height = "5vw";
+        textarea.style.fontSize = "1.5vw";
+        textarea.style.padding = "1vw";
+        textarea.style.resize = "none";
+        btnContainer.appendChild(textarea);
+
+        const sendBtn = document.createElement("button");
+        sendBtn.innerHTML =
+          'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
+        sendBtn.className = "answer-btn";
+        sendBtn.onclick = function () {
+          const text = textarea.value.trim();
+          if (text) {
+            submitUserAnswer(text);
+          }
         };
+        btnContainer.appendChild(sendBtn);
+      }
 
-        // Массив вопросов и вариантов ответов
-        const questions = [
-            {
-                id: 'questionBox',
-                text: 'у меня к тебе серьезный разговор о твоей гражданской позиции',
-                answers: [
-                    { label: 'я готов', action: 'ready' },
-                    { label: 'я не готов', action: 'notready' }
-                ]
-            },
-            {
-                id: 'questionBox2',
-                text: 'как так вышло, что ты до сих пор не осознал что происходит?',
-                answers: [
-                    { label: 'я не понимаю о чем ты', action: 'dontunderstand' },
-                    { label: 'я осознал', action: 'understand' }
-                ]
-            },
-            {
-                id: 'questionBox3',
-                text: 'об ущемлении твоих прав',
-                answers: [
-                    { label: 'понял', action: 'gotcha' },
-                    { label: 'не понял', action: 'notgotcha' }
-                ]
-            },
-            {
-                id: 'questionBox4',
-                text: 'хорошо',
-                answers: [
-                    { label: '5', action: 'ready2' }
-                ]
-            },
-            {
-                id: 'questionBox5',
-                text: 'и все еще молчишь?',
-                answers: [
-                    { label: 'я молчу', action: 'ido' },
-                    { label: 'я не молчу', action: 'idont' }
-                ]
-            },
-            {
-                id: 'questionBox6',
-                text: 'почему',
-                answers: [
-                    { label: '1', action: 'cant' },
-                    { label: '2', action: 'cant2' }
-                ]
-            }
-        ];
-
-        // Функция для рендера вопросов
-        function renderQuestions(containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            // Удаляем все кроме finalMessage
-            Array.from(container.children).forEach(child => {
-                if (child.id !== 'finalMessage') {
-                    container.removeChild(child);
-                }
-            });
-            questions.forEach((q, idx) => {
-                const section = document.createElement('section');
-                section.className = 'question-box' + (idx === 0 ? '' : ' hidden');
-                section.id = q.id;
-                const qDiv = document.createElement('div');
-                qDiv.className = 'question-text';
-                qDiv.textContent = q.text;
-                section.appendChild(qDiv);
-                const btnsDiv = document.createElement('div');
-                btnsDiv.className = 'answer-buttons';
-                q.answers.forEach(ans => {
-                    const btn = document.createElement('button');
-                    btn.className = 'answer-btn';
-                    btn.setAttribute('data-action', ans.action);
-                    btn.type = 'button';
-                    btn.textContent = ans.label;
-                    btnsDiv.appendChild(btn);
-                });
-                section.appendChild(btnsDiv);
-                // Вставляем перед finalMessage
-                const finalMsg = document.getElementById('finalMessage');
-                container.insertBefore(section, finalMsg);
-            });
+      function submitUserAnswer(text) {
+        if (localStorage.getItem("idoAnswered") === "true") {
+          alert("ты уже ответил");
+          return;
         }
 
-        function selectAnswer(answer) {
-            const currentBox = document.querySelector('.question-box:not(.hidden)');
-            if (currentBox) currentBox.classList.add('hidden');
-            const step = dialogFlow[answer];
-            if (!step) return;
-            if (answer === 'ido') {
-                showQuestion('questionBox6');
-                // Ждём рендеринга, затем заменяем кнопки на поле ввода
-                setTimeout(showTextInput, 0);
-                return;
+        const endpoint = "https://formspree.io/f/xnnzrqoa";
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answer: text }),
+        })
+          .then((res) => {
+            if (res.ok) {
+              localStorage.setItem("idoAnswered", "true");
+              // Очищаем контейнер с кнопками и показываем финальное сообщение
+              const btnContainer = document.querySelector(
+                ".question-box:not(.hidden) .answer-buttons"
+              );
+              if (btnContainer) {
+                btnContainer.innerHTML = "";
+              }
+              document.getElementById("finalText").textContent = "отправлено.";
+              document
+                .getElementById("finalMessage")
+                .classList.remove("hidden");
+            } else {
+              alert("ошибка отправки.");
             }
-            if (step.next) {
-                showQuestion(step.next);
-            }
-            if (step.final !== undefined) {
-                showFinalMessage(step.final, !!step.hideContent);
-            }
+          })
+          .catch(() => alert("ошибка сети."));
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        if (localStorage.getItem("idoAnswered") === "true") {
+          console.log("уже отправлял ответ.");
         }
-
-        function resetTest() {
-            const final = document.getElementById('finalMessage');
-            if (final) {
-                final.classList.add('hidden');
-            }
-            
-            if (window._contentHidden) {
-                restoreAllContent();
-            }
-
-            ['questionBox2','questionBox3','questionBox4','questionBox5','questionBox6'].forEach(function(id){
-                const el = document.getElementById(id);
-                if (el) el.classList.add('hidden');
-            });
-            
-            document.getElementById('questionBox').classList.remove('hidden');
-        }
-
-        window.addEventListener('DOMContentLoaded', function() {
-            // Рендерим вопросы
-            renderQuestions('questionsWrapper');
-            // Делегирование событий для ответов
-            const wrapper = document.getElementById('questionsWrapper');
-            if (wrapper) {
-                wrapper.addEventListener('click', function(e) {
-                    const btn = e.target.closest('.answer-btn');
-                    if (btn && btn.dataset.action) {
-                        selectAnswer(btn.dataset.action);
-                    }
-                });
-            }
-            const logo = document.querySelector('.header img[alt="krisavdome"]');
-            if (logo) {
-                logo.addEventListener('click', function() {
-                    // Просто перезагружаем страницу
-                    window.location.reload();
-                });
-            }
-        });
-        
-        function showQuestion(boxId) {
-            document.getElementById(boxId).classList.remove('hidden');
-        }
-        
-        function showFinalMessage(message, hideContent) {
-            document.getElementById('finalText').textContent = message;
-            document.getElementById('finalMessage').classList.remove('hidden');
-            if (hideContent) {
-                hideAllContentExceptFinal();
-            }
-        }
-        // --- ДОБАВЛЕНО: функция для текстового ответа ---
-        function showTextInput() {
-            const currentBox = document.querySelector('.question-box:not(.hidden)');
-            if (!currentBox) return;
-
-            const btnContainer = currentBox.querySelector('.answer-buttons');
-            btnContainer.innerHTML = '';
-
-            const textarea = document.createElement('textarea');
-            textarea.placeholder = 'потому что...';
-            textarea.style.width = '100%';
-            textarea.style.height = '5vw';
-            textarea.style.fontSize = '1.5vw';
-            textarea.style.padding = '1vw';
-            textarea.style.resize = 'none';
-            btnContainer.appendChild(textarea);
-
-            const sendBtn = document.createElement('button');
-            sendBtn.innerHTML = 'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
-            sendBtn.className = 'answer-btn';
-            sendBtn.onclick = function() {
-                const text = textarea.value.trim();
-                if (text) {
-                    submitUserAnswer(text);
-                }
-            };
-            btnContainer.appendChild(sendBtn);
-        }
-
-        function submitUserAnswer(text) {
-            if (localStorage.getItem('idoAnswered') === 'true') {
-                alert('ты уже ответил');
-                return;
-            }
-
-            const endpoint = "https://formspree.io/f/xnnzrqoa";
-            fetch(endpoint, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ answer: text })
-            })
-            .then(res => {
-                if (res.ok) {
-                    localStorage.setItem('idoAnswered', 'true');
-                    // Очищаем контейнер с кнопками и показываем финальное сообщение
-                    const btnContainer = document.querySelector('.question-box:not(.hidden) .answer-buttons');
-                    if (btnContainer) {
-                        btnContainer.innerHTML = '';
-                    }
-                    document.getElementById('finalText').textContent = 'отправлено.';
-                    document.getElementById('finalMessage').classList.remove('hidden');
-                } else {
-                    alert('ошибка отправки.');
-                }
-            })
-            .catch(() => alert('ошибка сети.'));
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('idoAnswered') === 'true') {
-                console.log('уже отправлял ответ.');
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>
