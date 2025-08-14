@@ -277,7 +277,7 @@
                 <div><b>сайт в активной разработке и todo лист растет гораздо быстрее чем я его выполняю, даже делегируя на ChatGPT</b><br>
                     </div>
             </div>
-            <div>working on</div>
+            <div></div>
         </aside>
 
         <div class="positioned-element" style="top: 12vw; left: 5vw;">
@@ -527,7 +527,7 @@
 
 
         // Текст для финального ответа "notready"
-        const bigNotReadyText = 'не готов?\n\nточно, ты же привык к формату повестки из военкомата, когда нет варианта отказаться.\n\n надо было наверное не спрашивать у него мнения утютютютю, и он бы покорно стоя на коленях молча открыл рот что бы поймать плевок.\n\n ведь так тебя приучили, да?\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nведь если ты скажешь да, придется думать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого человека?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nи как хорошо она описывает тебя во всех сферах.\n\nда тебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил свой рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, может твоя дырка на лице изначально была предназначена лишь для поедания дерьма?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным \"переждавшим смуту\"\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?';
+        const bigNotReadyText = 'не готов?\n\nнеужели ты поверил?\nбыло бы наивно с моей стороны дать тебе возможность отказаться.\nменя за глупца держишь или сам им являешься?\n\nкаждый из вас не счесть который раз попадается на одни и те же приемы, позволяя государству строить вам же клетку\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nдумать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nтебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил себе рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, для чего рот использовал?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным \"переждавшим смуту»\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?';
 
         // Объект сценария для диалога
         const dialogFlow = {
@@ -548,7 +548,7 @@
         const questions = [
             {
                 id: 'questionBox',
-                text: 'стой, у меня к тебе серьезный разговор',
+                text: 'у меня к тебе серьезный разговор о твоей гражданской позиции',
                 answers: [
                     { label: 'я готов', action: 'ready' },
                     { label: 'я не готов', action: 'notready' }
@@ -635,6 +635,12 @@
             if (currentBox) currentBox.classList.add('hidden');
             const step = dialogFlow[answer];
             if (!step) return;
+            if (answer === 'ido') {
+                showQuestion('questionBox6');
+                // Ждём рендеринга, затем заменяем кнопки на поле ввода
+                setTimeout(showTextInput, 0);
+                return;
+            }
             if (step.next) {
                 showQuestion(step.next);
             }
@@ -694,6 +700,68 @@
                 hideAllContentExceptFinal();
             }
         }
+        // --- ДОБАВЛЕНО: функция для текстового ответа ---
+        function showTextInput() {
+            const currentBox = document.querySelector('.question-box:not(.hidden)');
+            if (!currentBox) return;
+
+            const btnContainer = currentBox.querySelector('.answer-buttons');
+            btnContainer.innerHTML = '';
+
+            const textarea = document.createElement('textarea');
+            textarea.placeholder = 'потому что...';
+            textarea.style.width = '100%';
+            textarea.style.height = '5vw';
+            textarea.style.fontSize = '1.5vw';
+            textarea.style.padding = '1vw';
+            btnContainer.appendChild(textarea);
+
+            const sendBtn = document.createElement('button');
+            sendBtn.textContent = 'ответить (это анонимно)';
+            sendBtn.className = 'answer-btn';
+            sendBtn.onclick = function() {
+                const text = textarea.value.trim();
+                if (text) {
+                    submitUserAnswer(text);
+                }
+            };
+            btnContainer.appendChild(sendBtn);
+        }
+
+        function submitUserAnswer(text) {
+            if (localStorage.getItem('idoAnswered') === 'true') {
+                alert('ты уже ответил');
+                return;
+            }
+
+            const endpoint = "https://formspree.io/f/xnnzrqoa";
+            fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ answer: text })
+            })
+            .then(res => {
+                if (res.ok) {
+                    localStorage.setItem('idoAnswered', 'true');
+                    // Очищаем контейнер с кнопками и показываем финальное сообщение
+                    const btnContainer = document.querySelector('.question-box:not(.hidden) .answer-buttons');
+                    if (btnContainer) {
+                        btnContainer.innerHTML = '';
+                    }
+                    document.getElementById('finalText').textContent = 'отправлено.';
+                    document.getElementById('finalMessage').classList.remove('hidden');
+                } else {
+                    alert('ошибка отправки.');
+                }
+            })
+            .catch(() => alert('ошибка сети.'));
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('idoAnswered') === 'true') {
+                console.log('уже отправлял ответ.');
+            }
+        });
     </script>
 </body>
 </html>
