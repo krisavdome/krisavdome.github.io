@@ -124,22 +124,20 @@
             display: none;
         }
 
-        /* Общие классы для hover эффектов */
-        .hover-scale {
+        /* Общие базовые классы для hover эффектов */
+        .hover-scale-base {
             transition: transform 0.3s ease;
             cursor: pointer;
         }
-
-        .hover-scale:hover {
+        .hover-scale:hover, .hover-scale-flip:hover {
             transform: scale(1.1);
         }
-
+        .hover-scale {
+            /* no additional transform, only base */
+        }
         .hover-scale-flip {
-            transition: transform 0.3s ease;
-            cursor: pointer;
             transform: scaleX(-1);
         }
-
         .hover-scale-flip:hover {
             transform: scaleX(-1) scale(1.1);
         }
@@ -161,6 +159,7 @@
             transition: opacity 0.3s ease;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             z-index: 6;
+            /* Удалены индивидуальные top/left/width - только в инлайне */
         }
 
         /* Классы для позиционирования элементов */
@@ -247,27 +246,27 @@
             </div>
         </div>
 
-        <section class="content-section">
-            <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
-                <div class="hover-scale" style="width: 30%; display: flex; justify-content: center; position: relative;"
-                     onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
-                     onmouseout="this.querySelector('.hover-text').style.opacity='0';">
-                    <div style="position: relative;">
-                        <img src="yazva.png" alt="yazva" style="width: 18vw;">
-                        <div class="hover-text" style="top: 75%; left: 50%; transform: translateX(-50%); width: 18vw; text-align: center;"></div>
-                    </div>
-                </div>
-
-                <div class="hover-scale" style="width: 30%; display: flex; justify-content: center; position: relative;"
-                     onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
-                     onmouseout="this.querySelector('.hover-text').style.opacity='0';">
-                    <div style="position: relative;">
-                        <img src="./CSTC Circuit Diagram.png" alt="cstc loop" style="width: 18vw;">
-                        <div class="hover-text" style="top: 75%; left: 50%; transform: translateX(-50%); width: 18vw; text-align: center;"></div>
-                    </div>
+    <section class="content-section">
+        <div style="display: flex; justify-content: space-evenly; top: 5vw; width: 80vw; position: relative;">
+            <div class="hover-scale hover-scale-base" style="width: 30%; display: flex; justify-content: center; position: relative;"
+                 onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
+                 onmouseout="this.querySelector('.hover-text').style.opacity='0';">
+                <div style="position: relative;">
+                    <img src="yazva.png" alt="yazva" style="width: 18vw;">
+                    <div class="hover-text" style="top: 75%; left: 50%; width: 18vw; text-align: center; transform: translateX(-50%);"></div>
                 </div>
             </div>
-        </section>
+
+            <div class="hover-scale hover-scale-base" style="width: 30%; display: flex; justify-content: center; position: relative;"
+                 onmouseover="this.querySelector('.hover-text').style.opacity='1';" 
+                 onmouseout="this.querySelector('.hover-text').style.opacity='0';">
+                <div style="position: relative;">
+                    <img src="./CSTC Circuit Diagram.png" alt="cstc loop" style="width: 18vw;">
+                    <div class="hover-text" style="top: 75%; left: 50%; width: 18vw; text-align: center; transform: translateX(-50%);"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <aside class="infobox">
             <div>Крысы</div>
@@ -284,20 +283,15 @@
             <div></div>
         </aside>
 
-        <div class="positioned-element" style="top: 12vw; left: 5vw;">
-            <img src="./krisassirom.png" alt="krisassirom" 
-                class="hover-scale-flip"
-                style="position: relative; width: 45vw;" 
-                onmouseover="this.nextElementSibling.style.opacity='1';" 
-                onmouseout="this.nextElementSibling.style.opacity='0';"
-                onclick="playSound('ratSound')">
-            <div class="hover-text" style="
-                left: 4vw;
-                top: 18vw;
-                width: 45vw;
-                text-align: center;
-            "></div>
-        </div>
+    <div class="positioned-element" style="top: 12vw; left: 5vw;">
+        <img src="./krisassirom.png" alt="krisassirom" 
+            class="hover-scale-flip hover-scale-base"
+            style="position: relative; width: 45vw;" 
+            onmouseover="this.nextElementSibling.style.opacity='1';" 
+            onmouseout="this.nextElementSibling.style.opacity='0';"
+            onclick="playSound('ratSound')">
+        <div class="hover-text" style="left: 4vw; top: 18vw; width: 45vw; text-align: center;"></div>
+    </div>
     </main>
 
     <div style="display: flex; position: relative; justify-content: center; align-items: center; gap: 2vw; top: 8vw; width: 100%;">
@@ -349,29 +343,22 @@
     </div>
 
     <img src="./cult estetiki.png" 
-        class="hover-scale position-top-28-left-35"
+        class="hover-scale hover-scale-base position-top-28-left-35"
         style="width: 30vw;" 
-        onmouseover="showHoverText('ваши представления о значимости внешнего иллюзорны. вы не осознаете как оставляете важные<br>вопросы о мире и о себе в тени.')" 
-        onmouseout="hideHoverText()">
+        onmouseover="toggleHoverText('ваши представления о значимости внешнего иллюзорны. вы не осознаете как оставляете важные<br>вопросы о мире и о себе в тени.')"
+        onmouseout="toggleHoverText(null)">
 
     <div style="position: relative; width: fit-content;">
         <img src="./commercia.png" 
-            class="hover-scale position-top-10-left-10"
+            class="hover-scale hover-scale-base position-top-10-left-10"
             style="width: 20vw;" 
-            onmouseover="showHoverText('как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.')" 
-            onmouseout="hideHoverText()">
+            onmouseover="toggleHoverText('как только творчество <i>соприкасается</i> с деньгами, оно перестает иметь какую либо культурную<br>ценность.')"
+            onmouseout="toggleHoverText(null)">
         <div id="hoverText" class="hover-text" style="
-            position: absolute;
             left: 0;
             top: 180%;
             max-width: 80vw;
             text-align: center;
-            color: white;
-            font-size: 2vw;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            z-index: 6;
             transform: translateX(10vw);
             white-space: pre;
             word-wrap: break-word;
@@ -379,29 +366,23 @@
     </div>
 
     <img src="./mass cultura.png" 
-        class="hover-scale position-top-neg10-left-67"
+        class="hover-scale hover-scale-base position-top-neg10-left-67"
         style="width: 30vw;" 
-        onmouseover="showHoverText('в большинстве своем, массовая культура — это психотропное вещество, дозирующее смысл<br>до уровня, безопасного для интеллектуального инфантила. всё, что в ней есть — это<br>развлечение, пригодное для потребления тем, кто боится боли мышления.')" 
-        onmouseout="hideHoverText()">
+        onmouseover="toggleHoverText('в большинстве своем, массовая культура — это психотропное вещество, дозирующее смысл<br>до уровня, безопасного для интеллектуального инфантила. всё, что в ней есть — это<br>развлечение, пригодное для потребления тем, кто боится боли мышления.')"
+        onmouseout="toggleHoverText(null)">
 
     <div class="position-center-auto" style="width: 25vw;">
         <img src="./otkroyglaza.png" alt="otkroy glaza" 
-            class="hover-scale"
+            class="hover-scale hover-scale-base"
             style="position: relative; width: 100%;" 
             onmouseover="this.nextElementSibling.style.opacity='1'; playSound('otkroyGlazaSound');"
             onmouseout="this.nextElementSibling.style.opacity='0';">
         <div class="hover-text" style="
-            position: absolute;
             left: 50%;
             top: 16vw;
             width: 100%;
             transform: translateX(-50%);
             text-align: center;
-            color: white;
-            font-size: 2vw;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             z-index: 2;
         ">все вокруг потребляют дерьмо, все вокруг и есть дерьмо</div>
     </div>
@@ -432,101 +413,83 @@
             }
         }
 
-        function showHoverText(text) {
+        function toggleHoverText(textOrNull) {
             const hoverText = document.getElementById('hoverText');
             if (hoverText) {
-                hoverText.innerHTML = text;
-                hoverText.style.opacity = '1';
-            }
-        }
-
-        function hideHoverText() {
-            const hoverText = document.getElementById('hoverText');
-            if (hoverText) {
-                hoverText.style.opacity = '0';
+                if (textOrNull !== null) {
+                    hoverText.innerHTML = textOrNull;
+                    hoverText.style.opacity = '1';
+                } else {
+                    hoverText.style.opacity = '0';
+                }
             }
         }
 
         window._contentHidden = false;
 
-        // Простая функция - скрывает ВСЕ кроме header, footer и finalMessage
-        function hideAllContentExceptFinal() {
-            // Скрываем весь main
+        // Универсальная функция для скрытия/показа контента (true = показать всё, false = скрыть всё кроме финального)
+        function toggleContent(showAll) {
             const main = document.querySelector('main');
-            if (main) {
-                main.style.display = 'none';
-            }
-            
-            // Скрываем все остальные элементы body кроме header и footer
-            Array.from(document.body.children).forEach(child => {
-                if (child.tagName.toLowerCase() !== 'header' && 
-                    child.tagName.toLowerCase() !== 'footer' &&
-                    child.tagName.toLowerCase() !== 'script' &&
-                    child.tagName.toLowerCase() !== 'audio' &&
-                    !child.classList.contains('header') &&
-                    child !== main) {
-                    child.style.display = 'none';
+            if (!showAll) {
+                if (main) main.style.display = 'none';
+                Array.from(document.body.children).forEach(child => {
+                    if (
+                        child.tagName.toLowerCase() !== 'header' &&
+                        child.tagName.toLowerCase() !== 'footer' &&
+                        child.tagName.toLowerCase() !== 'script' &&
+                        child.tagName.toLowerCase() !== 'audio' &&
+                        !child.classList.contains('header') &&
+                        child !== main
+                    ) {
+                        child.style.display = 'none';
+                    }
+                });
+                const final = document.getElementById('finalMessage');
+                if (final) {
+                    if (!document.getElementById('tempFinalContainer')) {
+                        const tempContainer = document.createElement('div');
+                        tempContainer.id = 'tempFinalContainer';
+                        tempContainer.style.cssText = 'position: absolute; top: 10vw; left: 5vw; right: 5vw; z-index: 1000; max-height: calc(100vh - 20vw); overflow-y: auto; padding: 2vw;';
+                        const finalClone = final.cloneNode(true);
+                        finalClone.style.display = 'block';
+                        finalClone.classList.remove('hidden');
+                        finalClone.style.position = 'relative';
+                        finalClone.style.top = 'auto';
+                        finalClone.style.left = 'auto';
+                        finalClone.style.transform = 'none';
+                        tempContainer.appendChild(finalClone);
+                        document.body.appendChild(tempContainer);
+                    }
                 }
-            });
-            
-            // Показываем только finalMessage
-            const final = document.getElementById('finalMessage');
-            if (final) {
-                // Создаем новый контейнер для finalMessage если его родители скрыты
-                if (!document.getElementById('tempFinalContainer')) {
-                    const tempContainer = document.createElement('div');
-                    tempContainer.id = 'tempFinalContainer';
-                    tempContainer.style.cssText = 'position: absolute; top: 10vw; left: 5vw; right: 5vw; z-index: 1000; max-height: calc(100vh - 20vw); overflow-y: auto; padding: 2vw;';
-                    
-                    // Клонируем finalMessage
-                    const finalClone = final.cloneNode(true);
-                    finalClone.style.display = 'block';
-                    finalClone.classList.remove('hidden');
-                    finalClone.style.position = 'relative';
-                    finalClone.style.top = 'auto';
-                    finalClone.style.left = 'auto';
-                    finalClone.style.transform = 'none';
-                    
-                    tempContainer.appendChild(finalClone);
-                    document.body.appendChild(tempContainer);
-                }
+                window._contentHidden = true;
+            } else {
+                // showAll === true
+                const tempContainer = document.getElementById('tempFinalContainer');
+                if (tempContainer) tempContainer.remove();
+                if (main) main.style.display = '';
+                Array.from(document.body.children).forEach(child => {
+                    if (
+                        child.tagName.toLowerCase() !== 'header' &&
+                        child.tagName.toLowerCase() !== 'footer' &&
+                        child.tagName.toLowerCase() !== 'script' &&
+                        child.tagName.toLowerCase() !== 'audio' &&
+                        !child.classList.contains('header')
+                    ) {
+                        child.style.display = '';
+                    }
+                });
+                const final = document.getElementById('finalMessage');
+                if (final) final.classList.add('hidden');
+                window._contentHidden = false;
             }
-            
-            window._contentHidden = true;
         }
 
-        // Восстанавливает весь контент
+        // Старые функции для совместимости
+        function hideAllContentExceptFinal() {
+            toggleContent(false);
+        }
         function restoreAllContent() {
-            // Удаляем временный контейнер если он есть
-            const tempContainer = document.getElementById('tempFinalContainer');
-            if (tempContainer) {
-                tempContainer.remove();
-            }
-            
-            // Показываем main
-            const main = document.querySelector('main');
-            if (main) {
-                main.style.display = '';
-            }
-            
-            // Показываем все остальные элементы
-            Array.from(document.body.children).forEach(child => {
-                if (child.tagName.toLowerCase() !== 'header' && 
-                    child.tagName.toLowerCase() !== 'footer' &&
-                    child.tagName.toLowerCase() !== 'script' &&
-                    child.tagName.toLowerCase() !== 'audio' &&
-                    !child.classList.contains('header')) {
-                    child.style.display = '';
-                }
-            });
-            
-            // Скрываем оригинальный finalMessage
-            const final = document.getElementById('finalMessage');
-            if (final) {
-                final.classList.add('hidden');
-            }
-            
-            window._contentHidden = false;
+            toggleContent(true);
         }
 
 
@@ -718,10 +681,11 @@
             textarea.style.height = '5vw';
             textarea.style.fontSize = '1.5vw';
             textarea.style.padding = '1vw';
+            textarea.style.resize = 'none';
             btnContainer.appendChild(textarea);
 
             const sendBtn = document.createElement('button');
-            sendBtn.textContent = 'ответить (это анонимно)';
+            sendBtn.innerHTML = 'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
             sendBtn.className = 'answer-btn';
             sendBtn.onclick = function() {
                 const text = textarea.value.trim();
