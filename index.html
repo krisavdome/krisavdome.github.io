@@ -4,6 +4,30 @@
     <meta charset="UTF-8" />
     <title>крысавдоме</title>
     <style>
+      /* Повторяющиеся элементы */
+      .hover-scale-container {
+        width: 18vw;
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+      .hover-text-centered {
+        top: 75%;
+        left: 50%;
+        width: 18vw;
+        text-align: center;
+        transform: translateX(-50%);
+      }
+      .img-large-flip {
+        position: relative;
+        width: 45vw;
+      }
+      .hover-text-large {
+        left: 4vw;
+        top: 18vw;
+        width: 45vw;
+        text-align: center;
+      }
       @font-face {
         font-family: "Fritz Quadrata Cyrillic";
         src: url("./FritzQuadrataCyrillic.woff2") format("woff2"),
@@ -163,6 +187,12 @@
         /* Удалены индивидуальные top/left/width - только в инлайне */
       }
 
+      /* Показывать hover-text при наведении на контейнер или на flip-изображение */
+      .hover-scale-container:hover .hover-text,
+      .img-large-flip:hover + .hover-text {
+        opacity: 1;
+      }
+
       /* Классы для позиционирования элементов */
       .position-top-28-left-35 {
         position: relative;
@@ -297,94 +327,34 @@
 
       <section class="content-section">
         <div
-            style="
-              display: flex;
-              justify-content: left;
-              gap: 4vw;
-              top: 5vw;
-              left: 5vw;
-              width: max-content;
-              position: relative;
-            "
+          style="
+            display: flex;
+            justify-content: left;
+            gap: 4vw;
+            top: 5vw;
+            left: 5vw;
+            width: max-content;
+            position: relative;
+          "
         >
-          <div
-              class="hover-scale hover-scale-base"
-              style="
-                width: 18vw;
-                display: flex;
-                justify-content: center;
-                position: relative;
-              "
-            onmouseover="this.querySelector('.hover-text').style.opacity='1';"
-            onmouseout="this.querySelector('.hover-text').style.opacity='0';"
-          >
+          <div class="hover-scale hover-scale-base hover-scale-container">
             <div style="position: relative">
-              <img src="yazva.png" alt="yazva"/>
-              <div
-                class="hover-text"
-                style="
-                  top: 75%;
-                  left: 50%;
-                  width: 18vw;
-                  text-align: center;
-                  transform: translateX(-50%);
-                "
-              ></div>
+              <img src="yazva.png" alt="yazva" />
+              <div class="hover-text hover-text-centered"></div>
             </div>
           </div>
 
-            <div
-              class="hover-scale hover-scale-base"
-                style="
-                  width: 18vw;
-                  display: flex;
-                  justify-content: center;
-                  position: relative;
-                "
-              onmouseover="this.querySelector('.hover-text').style.opacity='1';"
-              onmouseout="this.querySelector('.hover-text').style.opacity='0';"
-            >
-              <div style="position: relative">
-                <img src="wetowl.jpg" alt="wetowl"/>
-                <div
-                  class="hover-text"
-                  style="
-                    top: 75%;
-                    left: 50%;
-                    width: 18vw;
-                    text-align: center;
-                    transform: translateX(-50%);
-                  "
-                ></div>
-              </div>
-            </div>
-
-          <div
-            class="hover-scale hover-scale-base"
-              style="
-                width: 18vw;
-                display: flex;
-                justify-content: center;
-                position: relative;
-              "
-            onmouseover="this.querySelector('.hover-text').style.opacity='1';"
-            onmouseout="this.querySelector('.hover-text').style.opacity='0';"
-          >
+          <div class="hover-scale hover-scale-base hover-scale-container">
             <div style="position: relative">
-              <img
-                src="./CSTC Circuit Diagram.png"
-                alt="cstc loop"
-              />
-              <div
-                class="hover-text"
-                style="
-                  top: 75%;
-                  left: 50%;
-                  width: 18vw;
-                  text-align: center;
-                  transform: translateX(-50%);
-                "
-              ></div>
+              <img src="wetowl.jpg" alt="wetowl" />
+              <div class="hover-text hover-text-centered"></div>
+            </div>
+          </div>
+
+          <div class="hover-scale hover-scale-base hover-scale-container">
+            <div style="position: relative">
+              <img src="./CSTC Circuit Diagram.png" alt="cstc loop" />
+              <div class="hover-text hover-text-centered"></div>
             </div>
           </div>
         </div>
@@ -417,16 +387,10 @@
         <img
           src="./krisassirom.png"
           alt="krisassirom"
-          class="hover-scale-flip hover-scale-base"
-          style="position: relative; width: 45vw"
-          onmouseover="this.nextElementSibling.style.opacity='1';"
-          onmouseout="this.nextElementSibling.style.opacity='0';"
+          class="hover-scale-flip hover-scale-base img-large-flip"
           onclick="playSound('ratSound')"
         />
-        <div
-          class="hover-text"
-          style="left: 4vw; top: 18vw; width: 45vw; text-align: center"
-        ></div>
+        <div class="hover-text hover-text-large"></div>
       </div>
     </main>
 
@@ -568,6 +532,7 @@
     </audio>
 
     <script>
+      // ---- Утилиты ----
       function playSound(soundId, volume = 0.5) {
         const sound = document.getElementById(soundId);
         if (sound) {
@@ -591,6 +556,7 @@
         }
       }
 
+      // ---- Управление контентом ----
       window._contentHidden = false;
 
       // Универсальная функция для скрытия/показа контента (true = показать всё, false = скрыть всё кроме финального)
@@ -659,9 +625,10 @@
         toggleContent(true);
       }
 
+      // ---- Рендеринг диалога ----
       // Текст для финального ответа "notready"
       const bigNotReadyText =
-        'не готов?\n\nнеужели ты поверил?\nбыло бы наивно с моей стороны дать тебе возможность отказаться.\nменя за глупца держишь или сам им являешься?\n\nкаждый из вас не счесть который раз попадается на одни и те же приемы, позволяя государству строить вам же клетку\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nдумать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nтебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил себе рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, для чего рот использовал?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным «переждавшим смуту»\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?';
+        "не готов?\n\nнеужели ты поверил?\nбыло бы наивно с моей стороны дать тебе возможность отказаться.\nменя за глупца держишь или сам им являешься?\n\nкаждый из вас не счесть который раз попадается на одни и те же приемы, позволяя государству строить вам же клетку\n\nпосмотри в зеркало\nты готов к чему угодно кроме ответственности\n\nдумать критически, действовать\n либо открыто признать что ты жалок и безволен\n\nкак бы ты сам назвал такого?\nпридумай себе имя\n\n«я не готов» - самая честная фраза за всю твою никчемную жизнь\n\nтебе видимо не на что жаловаться\nты ведь потерял свой голос не потому что его отняли, а потому что сам зашил себе рот собственными руками.\n\nа был ли у тебя вообще голос?\nвспомни, для чего рот использовал?\n\nпереждать и отмолчаться не выйдет\nведь уже не вышло.\n\nты не «в стороне» - ты соучастник.\n\nну что, хватит мозгов сделать выбор самому:\n\nмолчать дальше и когда все поменяется мнить себя самым умным «переждавшим смуту»\n\nили, может, впервые в жизни взять все в свои руки и хотя бы своим близким заявить о том что ты на самом деле думаешь.\n\nвсе еще не готов, да?";
 
       // Объект сценария для диалога
       const dialogFlow = {
@@ -727,7 +694,6 @@
         },
       ];
 
-      // Функция для рендера вопросов
       function renderQuestions(containerId) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -762,6 +728,19 @@
         });
       }
 
+      function showQuestion(boxId) {
+        document.getElementById(boxId).classList.remove("hidden");
+      }
+
+      function showFinalMessage(message, hideContent) {
+        document.getElementById("finalText").textContent = message;
+        document.getElementById("finalMessage").classList.remove("hidden");
+        if (hideContent) {
+          hideAllContentExceptFinal();
+        }
+      }
+
+      // ---- Логика ответов ----
       function selectAnswer(answer) {
         const currentBox = document.querySelector(".question-box:not(.hidden)");
         if (currentBox) currentBox.classList.add("hidden");
@@ -805,40 +784,7 @@
         document.getElementById("questionBox").classList.remove("hidden");
       }
 
-      window.addEventListener("DOMContentLoaded", function () {
-        // Рендерим вопросы
-        renderQuestions("questionsWrapper");
-        // Делегирование событий для ответов
-        const wrapper = document.getElementById("questionsWrapper");
-        if (wrapper) {
-          wrapper.addEventListener("click", function (e) {
-            const btn = e.target.closest(".answer-btn");
-            if (btn && btn.dataset.action) {
-              selectAnswer(btn.dataset.action);
-            }
-          });
-        }
-        const logo = document.querySelector('.header img[alt="krisavdome"]');
-        if (logo) {
-          logo.addEventListener("click", function () {
-            // Просто перезагружаем страницу
-            window.location.reload();
-          });
-        }
-      });
-
-      function showQuestion(boxId) {
-        document.getElementById(boxId).classList.remove("hidden");
-      }
-
-      function showFinalMessage(message, hideContent) {
-        document.getElementById("finalText").textContent = message;
-        document.getElementById("finalMessage").classList.remove("hidden");
-        if (hideContent) {
-          hideAllContentExceptFinal();
-        }
-      }
-      // --- ДОБАВЛЕНО: функция для текстового ответа ---
+      // ---- Текстовый ввод ----
       function showTextInput() {
         const currentBox = document.querySelector(".question-box:not(.hidden)");
         if (!currentBox) return;
@@ -900,6 +846,29 @@
           })
           .catch(() => alert("ошибка сети."));
       }
+
+      // ---- События ----
+      window.addEventListener("DOMContentLoaded", function () {
+        // Рендерим вопросы
+        renderQuestions("questionsWrapper");
+        // Делегирование событий для ответов
+        const wrapper = document.getElementById("questionsWrapper");
+        if (wrapper) {
+          wrapper.addEventListener("click", function (e) {
+            const btn = e.target.closest(".answer-btn");
+            if (btn && btn.dataset.action) {
+              selectAnswer(btn.dataset.action);
+            }
+          });
+        }
+        const logo = document.querySelector('.header img[alt="krisavdome"]');
+        if (logo) {
+          logo.addEventListener("click", function () {
+            // Просто перезагружаем страницу
+            window.location.reload();
+          });
+        }
+      });
 
       window.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("idoAnswered") === "true") {
