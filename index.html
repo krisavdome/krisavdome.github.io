@@ -707,7 +707,7 @@
         notgotcha: { final: "ты соврал в первом вопросе", hideContent: false },
         ready2: { final: "2", hideContent: false },
         ido: { next: "questionBox6" },
-        idont: { final: "4", hideContent: false },
+        idont: { next: "questionBox7" },
         cant: { final: "конец", hideContent: false },
         cant2: { final: "конец", hideContent: false },
       };
@@ -759,6 +759,11 @@
             { label: "2", action: "cant2" },
           ],
         },
+        {
+          id: "questionBox7",
+          text: "что ты делаешь?",
+          answers: [],
+        },
       ];
 
       function renderQuestions(containerId) {
@@ -789,6 +794,10 @@
             btnsDiv.appendChild(btn);
           });
           section.appendChild(btnsDiv);
+          // If this is questionBox7, show text input
+          if (q.id === "questionBox7") {
+            showTextInputWhatDo(section);
+          }
           // Вставляем перед finalMessage
           const finalMsg = document.getElementById("finalMessage");
           container.insertBefore(section, finalMsg);
@@ -819,12 +828,77 @@
           setTimeout(showTextInput, 0);
           return;
         }
+        if (step.action === "whatdo") {
+          showQuestion("questionBox7");
+          setTimeout(() => showTextInputWhatDo(), 0);
+          return;
+        }
         if (step.next) {
           showQuestion(step.next);
         }
         if (step.final !== undefined) {
           showFinalMessage(step.final, !!step.hideContent);
         }
+      }
+      // ---- Текстовый ввод для вопроса "что ты делаешь" ----
+      function showTextInputWhatDo(section) {
+        const currentBox =
+          section || document.querySelector(".question-box:not(.hidden)");
+        if (!currentBox) return;
+        const btnContainer = currentBox.querySelector(".answer-buttons");
+        btnContainer.innerHTML = "";
+
+        const textarea = document.createElement("textarea");
+        textarea.placeholder = "я делаю...";
+        textarea.style.width = "100%";
+        textarea.style.height = "5vw";
+        textarea.style.fontSize = "1.5vw";
+        textarea.style.padding = "1vw";
+        textarea.style.resize = "none";
+        btnContainer.appendChild(textarea);
+
+        const sendBtn = document.createElement("button");
+        sendBtn.innerHTML =
+          'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
+        sendBtn.className = "answer-btn";
+        sendBtn.onclick = function () {
+          const text = textarea.value.trim();
+          if (text) {
+            submitUserAnswerWhatDo(text);
+          }
+        };
+        btnContainer.appendChild(sendBtn);
+      }
+
+      function submitUserAnswerWhatDo(text) {
+        if (localStorage.getItem("idontAnswered") === "true") {
+          alert("ты уже ответил");
+          return;
+        }
+        const endpoint = "https://formspree.io/f/mzzvwovy";
+        fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answer: text }),
+        })
+          .then((res) => {
+            if (res.ok) {
+              localStorage.setItem("idontAnswered", "true");
+              const btnContainer = document.querySelector(
+                ".question-box:not(.hidden) .answer-buttons"
+              );
+              if (btnContainer) {
+                btnContainer.innerHTML = "";
+              }
+              document.getElementById("finalText").textContent = "отправлено.";
+              document
+                .getElementById("finalMessage")
+                .classList.remove("hidden");
+            } else {
+              alert("ошибка отправки.");
+            }
+          })
+          .catch(() => alert("ошибка сети."));
       }
 
       function resetTest() {
