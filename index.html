@@ -706,8 +706,8 @@
         gotcha: { next: "questionBox5" },
         notgotcha: { final: "ты соврал в первом вопросе", hideContent: false },
         ready2: { final: "2", hideContent: false },
-        ido: { next: "questionBox6" },
-        idont: { next: "questionBox7" },
+        whatdo: { action: "whatdo" },
+        why: { next: "questionBox6" },
         cant: { final: "конец", hideContent: false },
         cant2: { final: "конец", hideContent: false },
       };
@@ -747,8 +747,8 @@
           id: "questionBox5",
           text: "и все еще молчишь?",
           answers: [
-            { label: "я молчу", action: "ido" },
-            { label: "я не молчу", action: "idont" },
+            { label: "я молчу", action: "why" },
+            { label: "я не молчу", action: "whatdo" },
           ],
         },
         {
@@ -822,9 +822,8 @@
         if (currentBox) currentBox.classList.add("hidden");
         const step = dialogFlow[answer];
         if (!step) return;
-        if (answer === "ido") {
+        if (step.action === "why") {
           showQuestion("questionBox6");
-          // Ждём рендеринга, затем заменяем кнопки на поле ввода
           setTimeout(showTextInput, 0);
           return;
         }
@@ -849,7 +848,7 @@
         btnContainer.innerHTML = "";
 
         const textarea = document.createElement("textarea");
-        textarea.placeholder = "я делаю...";
+        textarea.placeholder = "я...";
         textarea.style.width = "100%";
         textarea.style.height = "5vw";
         textarea.style.fontSize = "1.5vw";
