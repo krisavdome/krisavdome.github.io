@@ -1082,5 +1082,13 @@
         }
       });
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          document.body.innerHTML =
+            "<div style='display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;color:#fff;background:#000;font-size:5vw;font-family:sans-serif;padding:2vw;'>заходить на мой сайт с мобильного устройства - то же самое что и слушать мою музыку с его динамика.</div>";
+        }
+      });
+    </script>
   </body>
 </html>
