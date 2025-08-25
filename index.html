@@ -42,12 +42,18 @@
           url("./FritzQuadrataCyrillic.woff") format("woff");
         font-weight: normal;
         font-style: normal;
+        font-display: swap;
       }
 
       .fritz-font {
         font-family: "Fritz Quadrata Cyrillic", sans-serif;
         font-style: normal;
         font-weight: normal;
+        font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1;
+        text-rendering: geometricPrecision;
+        -webkit-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       body {
@@ -63,6 +69,13 @@
         /* Скрытие скроллбара */
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none; /* Internet Explorer 10+ */
+        /* Улучшение кернинга */
+        font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1;
+        text-rendering: geometricPrecision;
+        -webkit-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1;
+        -moz-font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       /* Скрытие скроллбара для WebKit браузеров (Chrome, Safari, Edge) */
@@ -170,6 +183,13 @@
         /* Заменяем transform: scale() на альтернативные эффекты */
         color: #ff85da;
         padding-top: 0.7vw;
+      }
+
+      .answer-btn.send-btn:hover {
+        /* Специальный стиль для кнопки "ответить" */
+        color: #ff85da;
+        padding-left: 0.7vw;
+        padding-top: 0.2vw;
       }
 
       .question-box.hidden {
@@ -888,7 +908,7 @@
         const sendBtn = document.createElement("button");
         sendBtn.innerHTML =
           'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
-        sendBtn.className = "answer-btn";
+        sendBtn.className = "answer-btn send-btn";
         sendBtn.onclick = function () {
           const text = textarea.value.trim();
           if (text) {
@@ -947,7 +967,7 @@
         const sendBtn = document.createElement("button");
         sendBtn.innerHTML =
           'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
-        sendBtn.className = "answer-btn";
+        sendBtn.className = "answer-btn send-btn";
         sendBtn.onclick = function () {
           const text = textarea.value.trim();
           if (text) {
@@ -1032,7 +1052,7 @@
         const sendBtn = document.createElement("button");
         sendBtn.innerHTML =
           'ответить <span style="color: rgba(255,255,255,0.2);">(это анонимно)</span>';
-        sendBtn.className = "answer-btn";
+        sendBtn.className = "answer-btn send-btn";
         sendBtn.onclick = function () {
           const text = textarea.value.trim();
           if (text) {
